@@ -1,7 +1,0 @@
-main\java\mypage\enums\UserType.class
-main\java\mypage\controller\HomePageController.class
-main\java\mypage\domain\Answer.class
-main\java\mypage\dao\GenericDAO.class
-main\java\mypage\domain\User.class
-main\java\mypage\domain\Question.class
-main\java\mypage\service\HomePageService.class
