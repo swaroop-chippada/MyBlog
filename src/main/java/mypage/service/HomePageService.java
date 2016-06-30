@@ -14,14 +14,14 @@ public class HomePageService {
 	@Autowired
 	private GenericDAO genericDAO;
 
-	public List<Question> getQuestions() {
+	/*public List<Question> getQuestions() {
 		return genericDAO.getQuestions();
 	}
 
 	public void postQuestion(Question question) {
 		genericDAO.postQuestion(question);
 	}
-
+*/
 	public void setGenericDAO(GenericDAO genericDAO) {
 		this.genericDAO = genericDAO;
 	}

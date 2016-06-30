@@ -18,7 +18,7 @@ public class HomePageController {
 	private HomePageService homePageService;
 
 
-	@RequestMapping(value="/postQuestion.do", method = RequestMethod.POST)
+	/*@RequestMapping(value="/postQuestion.do", method = RequestMethod.POST)
 	public ModelAndView postQuestion(){
 		ModelAndView mav = new ModelAndView("blogs");
 		Question q = new Question();
@@ -27,7 +27,7 @@ public class HomePageController {
 		q.setUserName("testUser");
 		homePageService.postQuestion(q);
 		return mav;
-	}
+	}*/
 
 	public void setHomePageService(HomePageService homePageService) {
 		this.homePageService = homePageService;
