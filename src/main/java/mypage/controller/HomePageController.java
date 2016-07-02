@@ -20,14 +20,24 @@ public class HomePageController {
 
 	/*@RequestMapping(value="/postQuestion.do", method = RequestMethod.POST)
 	public ModelAndView postQuestion(){
+		System.out.println("postQuestion ---------");
 		ModelAndView mav = new ModelAndView("blogs");
 		Question q = new Question();
 		q.setQuestion("is this a successfull test ?");
 		q.setDateCreated(new Date());
 		q.setUserName("testUser");
 		homePageService.postQuestion(q);
+		System.out.println("postQuestion --------- end");
 		return mav;
 	}*/
+	
+	@RequestMapping(value="/blogs.do", method = RequestMethod.GET)
+	public ModelAndView blogs(){
+		ModelAndView mav = new ModelAndView("blogs");
+		mav.addObject("name","Swaroop");
+		mav.addObject("title", "Welcome");
+		return mav;
+	}
 
 	public void setHomePageService(HomePageService homePageService) {
 		this.homePageService = homePageService;

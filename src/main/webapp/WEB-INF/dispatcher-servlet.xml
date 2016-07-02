@@ -18,5 +18,7 @@
       <property name="prefix" value="/WEB-INF/pages/" />
       <property name="suffix" value=".jsp" />
    </bean>
+   
+   <mvc:annotation-driven />
  
 </beans>
