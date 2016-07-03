@@ -9,16 +9,22 @@
         http://www.springframework.org/schema/context 
         http://www.springframework.org/schema/context/spring-context.xsd">
 
-   <context:component-scan base-package="mypage" />
-   <mvc:resources mapping="/resources/**" location="/resources/" />
+	<context:component-scan base-package="mypage" />
+	<mvc:resources mapping="/resources/**" location="/resources/" />
 
-   <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-   <property name="viewClass"
+	<!-- <bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="viewClass"
 			value="org.springframework.web.servlet.view.JstlView" />
-      <property name="prefix" value="/WEB-INF/pages/" />
-      <property name="suffix" value=".jsp" />
-   </bean>
-   
-   <mvc:annotation-driven />
- 
+		<property name="prefix" value="/WEB-INF/pages/" />
+		<property name="suffix" value=".jsp" />
+	</bean> -->
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/pages/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+
+	<mvc:annotation-driven />
+
 </beans>
