@@ -1,4 +1,4 @@
-package main.java.mypage.controller;
+package mypage.controller;
 
 import java.util.Date;
 
@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import main.java.mypage.domain.Question;
-import main.java.mypage.service.HomePageService;
+import mypage.domain.Question;
+import mypage.service.HomePageService;
 
 @Controller
 public class HomePageController {

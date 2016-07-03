@@ -1,6 +1,6 @@
-package main.java.mypage.domain;
+package mypage.domain;
 
-import main.java.mypage.enums.UserType;
+import mypage.enums.UserType;
 
 public class User {
 

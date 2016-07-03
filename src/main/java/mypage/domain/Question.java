@@ -1,4 +1,4 @@
-package main.java.mypage.domain;
+package mypage.domain;
 
 import java.util.Date;
 

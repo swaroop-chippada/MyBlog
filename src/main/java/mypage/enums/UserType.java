@@ -1,4 +1,4 @@
-package main.java.mypage.enums;
+package mypage.enums;
 
 public enum UserType {
 	ADMIN,

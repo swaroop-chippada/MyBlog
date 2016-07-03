@@ -1,12 +1,12 @@
-package main.java.mypage.service;
+package mypage.service;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import main.java.mypage.dao.GenericDAO;
-import main.java.mypage.domain.Question;
+import mypage.dao.GenericDAO;
+import mypage.domain.Question;
 
 @Service
 public class HomePageService {

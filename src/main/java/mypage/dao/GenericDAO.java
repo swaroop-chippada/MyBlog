@@ -1,4 +1,4 @@
-package main.java.mypage.dao;
+package mypage.dao;
 
 import org.mongodb.morphia.Datastore;
 import org.springframework.stereotype.Repository;
@@ -15,7 +15,7 @@ public class GenericDAO {
 				new MongoClientURI("mongodb://swapadmin:projectblog@ds017584.mlab.com:17584/myproject"));
 
 		dataStore = morphia.createDatastore(mongoClient, dbName);
-		morphia.mapPackage("main.java.mypage.domain");
+		morphia.mapPackage("mypage.domain");
 
 	}
 	
