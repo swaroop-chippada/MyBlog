@@ -5,15 +5,22 @@ import java.util.Date;
 import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
+import org.mongodb.morphia.annotations.Property;
 
 @Entity("question")
 public class Question {
 
 	@Id
 	private ObjectId id;
+	
+	@Property(value = "question")
 	private String question;
 	private String tags[];
+	
+	@Property(value = "username")
 	private String userName;
+	
+	@Property(value = "datecreated")
 	private Date dateCreated;
 	
 	public ObjectId getId() {

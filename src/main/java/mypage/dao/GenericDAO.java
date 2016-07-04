@@ -1,14 +1,23 @@
 package mypage.dao;
 
+import java.util.List;
+
 import org.mongodb.morphia.Datastore;
+import org.mongodb.morphia.Morphia;
+import org.mongodb.morphia.query.QueryResults;
 import org.springframework.stereotype.Repository;
+
+import com.mongodb.MongoClient;
+import com.mongodb.MongoClientURI;
+
+import mypage.domain.Question;
 
 @Repository
 public class GenericDAO {
 
 	Datastore dataStore;
 
-	/*public GenericDAO() {
+	public GenericDAO() {
 		Morphia morphia = new Morphia();
 		String dbName = "myproject";
 		MongoClient mongoClient = new MongoClient(
@@ -20,11 +29,11 @@ public class GenericDAO {
 	}
 	
 	public void postQuestion(Question question){
-		dataStore.save(Question.class);
+		dataStore.save(question);
 	}
 
 	public List<Question> getQuestions() {
 		QueryResults<Question> question = dataStore.find(Question.class);
 		return question.asList();
-	}*/
+	}
 }

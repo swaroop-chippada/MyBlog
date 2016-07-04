@@ -18,7 +18,7 @@ public class HomePageController {
 	private HomePageService homePageService;
 
 
-	/*@RequestMapping(value="/postQuestion.do", method = RequestMethod.POST)
+	@RequestMapping(value="/postQuestion.do", method = RequestMethod.GET)
 	public ModelAndView postQuestion(){
 		System.out.println("postQuestion ---------");
 		ModelAndView mav = new ModelAndView("blogs");
@@ -29,7 +29,7 @@ public class HomePageController {
 		homePageService.postQuestion(q);
 		System.out.println("postQuestion --------- end");
 		return mav;
-	}*/
+	}
 	
 	@RequestMapping(value="/blogs.do", method = RequestMethod.GET)
 	public ModelAndView blogs(){
