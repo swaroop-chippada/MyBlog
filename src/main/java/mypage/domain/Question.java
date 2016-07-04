@@ -15,6 +15,9 @@ public class Question {
 	
 	@Property(value = "question")
 	private String question;
+	
+	private String email;
+	
 	private String tags[];
 	
 	@Property(value = "username")
@@ -52,5 +55,11 @@ public class Question {
 	}
 	public void setDateCreated(Date dateCreated) {
 		this.dateCreated = dateCreated;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
 	}
 }
