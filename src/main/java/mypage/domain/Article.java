@@ -3,21 +3,24 @@ package mypage.domain;
 import java.util.Date;
 
 import org.bson.types.ObjectId;
+import org.mongodb.morphia.annotations.Id;
 
 public class Article {
 
-	private ObjectId id;
+	@Id
+	private String id;
+	
 	private String heading;
 	private String content;
 	private String author;
 	private Date createdDate;
 	private Date modifiedDate;
 
-	public ObjectId getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(ObjectId id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

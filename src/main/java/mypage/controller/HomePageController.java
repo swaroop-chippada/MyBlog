@@ -2,11 +2,13 @@ package mypage.controller;
 
 import java.util.Date;
 
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import mypage.domain.Article;
@@ -23,6 +25,15 @@ public class HomePageController {
 	public ModelAndView indexPage(){
 		ModelAndView mav = new ModelAndView("index");
 		mav.addObject("questionForm", new Question());
+		//Recent 5
+		mav.addObject("articleList",homePageService.getRecentArticles(0, 5));
+		return mav;
+	}
+	
+	@RequestMapping(value="/*article.html", method = RequestMethod.GET)
+	public ModelAndView article(@RequestParam("articleId") String id){
+		ModelAndView mav = new ModelAndView("article");
+		mav.addObject("article", homePageService.getArticle(id));
 		return mav;
 	}
 	

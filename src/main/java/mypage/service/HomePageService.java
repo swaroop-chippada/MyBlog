@@ -2,6 +2,7 @@ package mypage.service;
 
 import java.util.List;
 
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +27,14 @@ public class HomePageService {
 	public void createArticle(Article article) {
 		genericDAO.createArticle(article);
 	}
+	
+	public List<Article> getRecentArticles(int offset, int limit){
+		return genericDAO.getRecentArticles(offset, limit);
+	}
 
+	public Article getArticle(String id){
+		return genericDAO.getArticle(id);
+	}
 
 	public void setGenericDAO(GenericDAO genericDAO) {
 		this.genericDAO = genericDAO;

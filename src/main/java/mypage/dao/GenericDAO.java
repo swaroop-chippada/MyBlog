@@ -2,8 +2,10 @@ package mypage.dao;
 
 import java.util.List;
 
+import org.bson.types.ObjectId;
 import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.Morphia;
+import org.mongodb.morphia.query.Query;
 import org.mongodb.morphia.query.QueryResults;
 import org.springframework.stereotype.Repository;
 
@@ -40,5 +42,15 @@ public class GenericDAO {
 
 	public void createArticle(Article article) {
 		dataStore.save(article);
+	}
+	
+	public List<Article> getRecentArticles(int offset, int limit) {
+		QueryResults<Article> article = dataStore.find(Article.class).order("-modifiedDate").offset(offset).limit(limit);
+		return article.asList();
+	}
+	
+	public Article getArticle(String id) {
+		Query<Article> article = dataStore.find(Article.class, "id", id);
+		return article.get();
 	}
 }

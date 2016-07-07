@@ -58,15 +58,33 @@
 					</p>
 					<!-- <a href="#work" class="button big scrolly">Learn about what I
 						do</a> -->
-
-					<footer>
-						<p>Do you have any questions on your mind ?</p>
-						<a href="#contact" class="button big scrolly">Post me here</a>
-					</footer>
 				</div>
 			</div>
 		</article>
 	</div>
+
+	<div class="wrapper style2">
+		<article class="container 75%">
+			<header>
+				<h2>My Latest articles</h2>
+			</header>
+			<div>
+				<div class="row">
+					<div class="12u">
+					<c:forEach var="article" items="${articleList}">
+					<p><a href="article.html?articleId=${article.id}">${article.heading}</a></p>
+					</br>
+					</c:forEach>
+					</div>
+				</div>
+				<footer>
+						<p>Do you have any questions on your mind ?</p>
+						<a href="#contact" class="button big scrolly">Post me here</a>
+				</footer>
+			</div>
+		</article>
+	</div>
+
 
 	<!-- Contact -->
 	<div class="wrapper style4">
