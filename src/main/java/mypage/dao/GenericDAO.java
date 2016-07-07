@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 
+import mypage.domain.Article;
 import mypage.domain.Question;
 
 @Repository
@@ -35,5 +36,9 @@ public class GenericDAO {
 	public List<Question> getQuestions() {
 		QueryResults<Question> question = dataStore.find(Question.class);
 		return question.asList();
+	}
+
+	public void createArticle(Article article) {
+		dataStore.save(article);
 	}
 }

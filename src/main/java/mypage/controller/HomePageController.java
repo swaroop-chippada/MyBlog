@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import mypage.domain.Article;
 import mypage.domain.Question;
 import mypage.service.HomePageService;
 
@@ -22,6 +23,22 @@ public class HomePageController {
 	public ModelAndView indexPage(){
 		ModelAndView mav = new ModelAndView("index");
 		mav.addObject("questionForm", new Question());
+		return mav;
+	}
+	
+	@RequestMapping(value="/createArticle", method = RequestMethod.GET)
+	public ModelAndView createArticle(){
+		ModelAndView mav = new ModelAndView("createArticle");
+		mav.addObject("article", new Article());
+		return mav;
+	}
+	
+	@RequestMapping(value="/articleCreation.do", method = RequestMethod.POST)
+	public ModelAndView articleCreation(@ModelAttribute("article") Article article){
+		ModelAndView mav = new ModelAndView("indexPost");
+		article.setCreatedDate(new Date());
+		article.setModifiedDate(new Date());
+		homePageService.createArticle(article);
 		return mav;
 	}
 	
