@@ -24,9 +24,20 @@ public class HomePageController {
 	@RequestMapping(value="/", method = RequestMethod.GET)
 	public ModelAndView indexPage(){
 		ModelAndView mav = new ModelAndView("index");
-		mav.addObject("questionForm", new Question());
 		//Recent 5
 		mav.addObject("articleList",homePageService.getRecentArticles(0, 5));
+		return mav;
+	}
+	
+	@RequestMapping(value="/Home", method = RequestMethod.GET)
+	public ModelAndView homePage(){
+		return indexPage();
+	}
+	
+	@RequestMapping(value="/about", method = RequestMethod.GET)
+	public ModelAndView aboutMe(){
+		ModelAndView mav = new ModelAndView("aboutMe");
+		mav.addObject("questionForm",new Question());
 		return mav;
 	}
 	
@@ -46,10 +57,11 @@ public class HomePageController {
 	
 	@RequestMapping(value="/articleCreation.do", method = RequestMethod.POST)
 	public ModelAndView articleCreation(@ModelAttribute("article") Article article){
-		ModelAndView mav = new ModelAndView("indexPost");
+		ModelAndView mav = new ModelAndView("index");
 		article.setCreatedDate(new Date());
 		article.setModifiedDate(new Date());
 		homePageService.createArticle(article);
+		mav.addObject("articleList",homePageService.getRecentArticles(0, 5));
 		return mav;
 	}
 	

@@ -1,10 +1,19 @@
-<!-- Scripts -->
-<!--[if lte IE 8]><script src="/resources/assets/js/ie/html5shiv.js"></script><![endif]-->
-<script src="<c:url value="/resources/assets/js/jquery.min.js"/>"></script>
 <script
-	src="<c:url value="/resources/assets/js/jquery.scrolly.min.js"/>"></script>
-<script src="<c:url value="/resources/assets/js/skel.min.js"/>"></script>
-<script src="<c:url value="/resources/assets/js/skel-viewport.min.js"/>"></script>
-<script src="<c:url value="/resources/assets/js/util.js"/>"></script>
-<!--[if lte IE 8]><script src="<c:url value="/resources/assets/js/ie/respond.min.js"/>"></script><![endif]-->
-<script src="<c:url value="/resources/assets/js/main.js"/>"></script>
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script
+	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script>
+	(function(i, s, o, g, r, a, m) {
+		i['GoogleAnalyticsObject'] = r;
+		i[r] = i[r] || function() {
+			(i[r].q = i[r].q || []).push(arguments)
+		}, i[r].l = 1 * new Date();
+		a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+		a.async = 1;
+		a.src = g;
+		m.parentNode.insertBefore(a, m)
+	})(window, document, 'script',
+			'https://www.google-analytics.com/analytics.js', 'ga');
+	ga('create', 'UA-48025306-2', 'auto');
+	ga('send', 'pageview');
+</script>

@@ -12,7 +12,7 @@
 </head>
 <body>
 	<!-- Nav -->
-	<%@ include file="../tags/nav.tag"%>
+	<custom:nav active="aboutme"></custom:nav>
 	<!-- Home -->
 	<div class="wrapper style1 first">
 		<article class="container" id="top">
@@ -20,11 +20,13 @@
 
 				<div class="12u">
 					<header>
-						<h1>Thanks for posting. Will answer you shortly ?</h1>
+						<h1>Thanks for posting. Will answer you shortly !</h1>
 					</header>
 				</div>
 			</div>
 		</article>
 	</div>
+	<custom:footer></custom:footer>
+
 </body>
 </html>

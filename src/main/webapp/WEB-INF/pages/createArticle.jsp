@@ -24,6 +24,7 @@
 <body>
 
 	<div class="container-fluid">
+		<custom:nav></custom:nav>
 		<article>
 			<header>
 				<h2>Article creation</h2>
@@ -35,8 +36,8 @@
 							action="articleCreation.do" onsubmit="beforeSubmit()">
 							<div class="form-group">
 								<label for="heading">Article Heading</label>
-								<form:input type="text" path="heading" id="heading"
-									placeholder="Article heading" />
+								<form:input type="text" path="heading" class="form-control"
+									id="heading" placeholder="Article heading" />
 							</div>
 							<div class="form-group">
 								<div id="textEditor">
@@ -47,7 +48,7 @@
 							<div class="form-group">
 								<label for="heading">Author</label>
 								<form:input type="text" path="author" id="author"
-									placeholder="Article Author" />
+									class="form-control" placeholder="Article Author" />
 							</div>
 							<div class="form-group">
 								<input type="submit" class="btn btn-default" value="Post" /> <input
@@ -59,16 +60,18 @@
 			</div>
 		</article>
 	</div>
+	<custom:footer></custom:footer>
+
 	<script>
 		$(document).ready(function() {
 			var textArea = $('#textEditor').summernote({
-				  height: 300,                 // set editor height
-				  minHeight: null,             // set minimum height of editor
-				  maxHeight: null,             // set maximum height of editor
-				});
+				height : 300, // set editor height
+				minHeight : null, // set minimum height of editor
+				maxHeight : null, // set maximum height of editor
+			});
 		});
-		
-		function beforeSubmit(){
+
+		function beforeSubmit() {
 			$('#content').val($('#textEditor').summernote('code'));
 		}
 	</script>

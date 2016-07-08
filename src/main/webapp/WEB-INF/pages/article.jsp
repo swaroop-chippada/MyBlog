@@ -12,21 +12,21 @@
 </head>
 <body>
 	<!-- Nav -->
-	<%@ include file="../tags/nav.tag"%>
+	<custom:nav></custom:nav>
 	<!-- Home -->
 	<div class="wrapper style1 first">
 		<article class="container" id="top">
 			<div class="row">
 
 				<div class="12u">
-					<header>
-						Article Page
-					</header>
+					<header> Article Page </header>
 					<p>${article.heading}</p>
 					<p>${article.content}</p>
 				</div>
 			</div>
 		</article>
 	</div>
+	<custom:footer></custom:footer>
+
 </body>
 </html>

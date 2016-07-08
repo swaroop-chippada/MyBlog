@@ -50,7 +50,7 @@ public class GenericDAO {
 	}
 	
 	public Article getArticle(String id) {
-		Query<Article> article = dataStore.find(Article.class, "id", id);
+		Query<Article> article = dataStore.find(Article.class, "id", new ObjectId(id));
 		return article.get();
 	}
 }
