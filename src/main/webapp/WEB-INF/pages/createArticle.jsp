@@ -6,15 +6,9 @@
 <meta name="google-site-verification"
 	content="w0DVCHIVnjrXlo_0iBjpBDDBavPLscfNQezp6kzbF00" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<%-- <%@ include file="../tags/css.tag"%> --%>
+<%@ include file="../tags/css.tag"%>
 <%@ include file="../tags/js.tag"%>
 <title>Create New Article</title>
-<link
-	href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css"
-	rel="stylesheet">
-<script src="<c:url value="/resources/assets/js/jquery.min.js"/>"></script>
-<script
-	src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
 <link
 	href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.css"
 	rel="stylesheet">
@@ -23,8 +17,9 @@
 </head>
 <body>
 
+<custom:nav></custom:nav>
 	<div class="container-fluid">
-		<custom:nav></custom:nav>
+		
 		<article>
 			<header>
 				<h2>Article creation</h2>
@@ -60,7 +55,7 @@
 			</div>
 		</article>
 	</div>
-	<custom:footer></custom:footer>
+<%-- 	<custom:footer></custom:footer> --%>
 
 	<script>
 		$(document).ready(function() {

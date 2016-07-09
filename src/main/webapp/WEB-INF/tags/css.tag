@@ -26,10 +26,8 @@
 footer {
 	background-color: #555;
 	color: white;
-	position: fixed;
-	bottom: 0;
 	width: 100%;
-	padding: 15px;
+    height: 100px;
 }
 
 /* On small screens, set height to 'auto' for sidenav and grid */
@@ -45,6 +43,12 @@ footer {
 
 .form-padding40{
 padding-bottom:40px;
+}
+.form-padding50{
+padding:50px;
+}
+.spacer{
+padding:30px;
 }
 .social-icons{
 padding-bottom:5px;

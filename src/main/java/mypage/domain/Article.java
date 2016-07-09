@@ -2,19 +2,19 @@ package mypage.domain;
 
 import java.util.Date;
 
-import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.Id;
 
 public class Article {
 
 	@Id
 	private String id;
-	
 	private String heading;
 	private String content;
 	private String author;
 	private Date createdDate;
 	private Date modifiedDate;
+	private String bookTitle;
+	private int chapter;
 
 	public String getId() {
 		return id;
@@ -62,6 +62,22 @@ public class Article {
 
 	public void setModifiedDate(Date modifiedDate) {
 		this.modifiedDate = modifiedDate;
+	}
+
+	public String getBookTitle() {
+		return bookTitle;
+	}
+
+	public void setBookTitle(String bookTitle) {
+		this.bookTitle = bookTitle;
+	}
+
+	public int getChapter() {
+		return chapter;
+	}
+
+	public void setChapter(int chapter) {
+		this.chapter = chapter;
 	}
 
 }

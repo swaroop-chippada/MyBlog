@@ -16,8 +16,15 @@
 	<!-- Nav -->
 	<custom:nav active="aboutme"></custom:nav>
 
+	<c:if test="${questionPosted}">
+		<div class="alert alert-block">
+			<button type="button" class="close" data-dismiss="alert">&times;</button>
+			<h4>Thanks for posting. Will answer you shortly!</h4>
+		</div>
+	</c:if>
+
 	<div class="container-fluid text-center">
-		<div class="row content">
+		<div class="row content spacer">
 			<!-- <div class="col-sm-2 sidenav">
 				<p><a href="#">Link</a></p>
       <p><a href="#">Link</a></p>
@@ -48,19 +55,63 @@
 					</p>
 				</div>
 			</div>
-			<div class="container col-sm-12">
-				<p>Let me help you in finding answer for you ?</p>
+			<div class="col-sm-12">
+				<div class="container col-sm-12 text-left">
+					<header class="spacer">
+						<h4>Following are some technologies which i have worked on.</h4>
+					</header>
+					<div class="col-sm-2">
+						<img src="<c:url value="/resources/images/javalogo.png"/>"
+							alt="swaroop chippada" width="150" height="100" />
+					</div>
+					<div class="col-sm-2">
+						<img src="<c:url value="/resources/images/spring1.png"/>"
+							alt="swaroop chippada" width="150" height="100" />
+					</div>
+					<div class="col-sm-2">
+						<img src="<c:url value="/resources/images/Hibernate_logo_a.png"/>"
+							alt="swaroop chippada" width="150" height="100" />
+					</div>
+					<div class="col-sm-2">
+						<img src="<c:url value="/resources/images/solr1.png"/>"
+							alt="swaroop chippada" width="150" height="100" />
+					</div>
+					<div class="col-sm-2">
+						<img src="<c:url value="/resources/images/oracle-logo.png"/>"
+							alt="swaroop chippada" width="150" height="100" />
+					</div>
+					<div class="col-sm-2">
+						<img src="<c:url value="/resources/images/MongoDB-Logo.svg.png"/>"
+							alt="swaroop chippada" width="150" height="100" />
+					</div>
+				</div>
+				<div class="container col-sm-12">
+					<div class="col-sm-2">
+						<img src="<c:url value="/resources/images/jQuery.gif"/>"
+							alt="swaroop chippada" width="150" height="100" />
+					</div>
+					<div class="col-sm-2">
+						<img src="<c:url value="/resources/images/bootstrap.gif"/>"
+							alt="swaroop chippada" width="150" height="100" />
+					</div>
+				</div>
+			</div>
+			<div class="container col-sm-12 spacer">
+				<h3 class="form-padding40">
+					<strong>Feel Free to post any questions below. so that i
+						can try to help you in finding answer for you ?</strong>
+				</h3>
 				<form:form method="post" modelAttribute="questionForm"
 					action="postQuestion.do">
 
 					<div class="form-group form-padding40">
 						<div class="col-sm-6">
-							<form:input path="userName" id="name"
-								placeholder="Name" class="form-control" />
+							<form:input path="userName" id="name" placeholder="Name"
+								class="form-control" />
 						</div>
 						<div class="col-sm-6">
-							<form:input path="email" id="email"
-								placeholder="Email" class="form-control" />
+							<form:input path="email" id="email" placeholder="Email"
+								class="form-control" />
 						</div>
 					</div>
 					<div class="form-group form-padding40">
@@ -69,7 +120,7 @@
 								placeholder="Post your Question here !" class="form-control" />
 						</div>
 					</div>
-					<div class="form-group form-padding40">
+					<div class="form-group form-padding50">
 						<div class="col-sm-12">
 							<input type="submit" value="Post" class="btn btn-default" /> <input
 								type="reset" value="Clear" class="btn btn-default" />

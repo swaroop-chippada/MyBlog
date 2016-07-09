@@ -62,14 +62,17 @@ public class HomePageController {
 		article.setModifiedDate(new Date());
 		homePageService.createArticle(article);
 		mav.addObject("articleList",homePageService.getRecentArticles(0, 5));
+		mav.addObject("articleCreated", true);
 		return mav;
 	}
 	
 	@RequestMapping(value="/postQuestion.do", method = RequestMethod.POST)
 	public ModelAndView postQuestion(@ModelAttribute("questionForm") Question question){
-		ModelAndView mav = new ModelAndView("indexPost");
+		ModelAndView mav = new ModelAndView("aboutMe");
 		question.setDateCreated(new Date());
 		homePageService.postQuestion(question);
+		mav.addObject("questionForm", new Question());
+		mav.addObject("questionPosted", true);
 		return mav;
 	}
 	
