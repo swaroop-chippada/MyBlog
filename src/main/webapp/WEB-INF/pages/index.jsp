@@ -30,7 +30,7 @@
       <p><a href="#">Link</a></p>
       <p><a href="#">Link</a></p> 
 			</div> -->
-			<div class="col-sm-12">
+			<div class="col-sm-12" style="min-height:500px">
 				<div class="text-left">
 					<header>
 						<h1>Latest Articles</h1>

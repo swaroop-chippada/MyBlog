@@ -14,17 +14,13 @@
 	<!-- Nav -->
 	<custom:nav></custom:nav>
 	<!-- Home -->
-	<div class="wrapper style1 first">
-		<article class="container" id="top">
-			<div class="row">
-
-				<div class="12u">
-					<header> Article Page </header>
-					<p>${article.heading}</p>
-					<p>${article.content}</p>
-				</div>
+	<div class="container-fluid" style="min-height:500px">
+		<div class="row content spacer">
+			<div class="12u">
+				<header class="text-center"><strong>${article.heading}</strong></header>
+				<p>${article.content}</p>
 			</div>
-		</article>
+		</div>
 	</div>
 	<custom:footer></custom:footer>
 
