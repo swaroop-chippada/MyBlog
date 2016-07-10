@@ -49,6 +49,11 @@ public class GenericDAO {
 		return article.asList();
 	}
 	
+	public List<Article> getRecentArticles(int offset, int limit, String category) {
+		QueryResults<Article> article = dataStore.find(Article.class).filter("category", category).order("-modifiedDate").offset(offset).limit(limit);
+		return article.asList();
+	}
+	
 	public Article getArticle(String id) {
 		Query<Article> article = dataStore.find(Article.class, "id", new ObjectId(id));
 		return article.get();

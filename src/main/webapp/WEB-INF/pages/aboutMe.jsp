@@ -122,8 +122,8 @@
 					</div>
 					<div class="form-group form-padding50">
 						<div class="col-sm-12">
-							<input type="submit" value="Post" class="btn btn-default" /> <input
-								type="reset" value="Clear" class="btn btn-default" />
+							<input type="submit" value="Post" class="btn btn-success" /> <input
+								type="reset" value="Clear" class="btn btn-danger" />
 						</div>
 					</div>
 

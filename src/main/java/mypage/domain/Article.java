@@ -10,11 +10,10 @@ public class Article {
 	private String id;
 	private String heading;
 	private String content;
-	private String author;
+	private String userId;
+	private String category;
 	private Date createdDate;
 	private Date modifiedDate;
-	private String bookTitle;
-	private int chapter;
 
 	public String getId() {
 		return id;
@@ -40,14 +39,6 @@ public class Article {
 		this.content = content;
 	}
 
-	public String getAuthor() {
-		return author;
-	}
-
-	public void setAuthor(String author) {
-		this.author = author;
-	}
-
 	public Date getCreatedDate() {
 		return createdDate;
 	}
@@ -64,20 +55,20 @@ public class Article {
 		this.modifiedDate = modifiedDate;
 	}
 
-	public String getBookTitle() {
-		return bookTitle;
+	public String getUserId() {
+		return userId;
 	}
 
-	public void setBookTitle(String bookTitle) {
-		this.bookTitle = bookTitle;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 
-	public int getChapter() {
-		return chapter;
+	public String getCategory() {
+		return category;
 	}
 
-	public void setChapter(int chapter) {
-		this.chapter = chapter;
+	public void setCategory(String category) {
+		this.category = category;
 	}
 
 }

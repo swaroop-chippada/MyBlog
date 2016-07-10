@@ -23,21 +23,25 @@ public class HomePageService {
 	public void postQuestion(Question question) {
 		genericDAO.postQuestion(question);
 	}
-	
+
 	public void createArticle(Article article) {
 		genericDAO.createArticle(article);
 	}
-	
-	public List<Article> getRecentArticles(int offset, int limit){
+
+	public List<Article> getRecentArticles(int offset, int limit) {
 		return genericDAO.getRecentArticles(offset, limit);
 	}
 
-	public Article getArticle(String id){
+	public List<Article> getRecentArticles(int offset, int limit, String category) {
+		return genericDAO.getRecentArticles(offset, limit, category);
+	}
+
+	public Article getArticle(String id) {
 		return genericDAO.getArticle(id);
 	}
 
 	public void setGenericDAO(GenericDAO genericDAO) {
 		this.genericDAO = genericDAO;
 	}
-	
+
 }

@@ -1,8 +1,10 @@
 package mypage.controller;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -20,7 +22,7 @@ public class HomePageController {
 
 	@Autowired
 	private HomePageService homePageService;
-
+	
 	@RequestMapping(value="/", method = RequestMethod.GET)
 	public ModelAndView indexPage(){
 		ModelAndView mav = new ModelAndView("index");
@@ -32,6 +34,14 @@ public class HomePageController {
 	@RequestMapping(value="/Home", method = RequestMethod.GET)
 	public ModelAndView homePage(){
 		return indexPage();
+	}
+	
+	@RequestMapping(value="/category", method = RequestMethod.GET)
+	public ModelAndView categoryPage(@RequestParam("id") String category){
+		ModelAndView mav = new ModelAndView("articleChannel");
+		//Recent 5
+		mav.addObject("articleList",homePageService.getRecentArticles(0, 5, category));
+		return mav;
 	}
 	
 	@RequestMapping(value="/about", method = RequestMethod.GET)
@@ -52,6 +62,12 @@ public class HomePageController {
 	public ModelAndView createArticle(){
 		ModelAndView mav = new ModelAndView("createArticle");
 		mav.addObject("article", new Article());
+		Map<String,String> articleCategories = new LinkedHashMap<String,String>();
+		articleCategories.put("java", "Java");
+		articleCategories.put("spring", "Spring");
+		articleCategories.put("hibernate", "Hibernate");
+		articleCategories.put("solr", "Solr");
+		mav.addObject("articleCategories", articleCategories);
 		return mav;
 	}
 	
@@ -79,4 +95,5 @@ public class HomePageController {
 	public void setHomePageService(HomePageService homePageService) {
 		this.homePageService = homePageService;
 	}
+
 }

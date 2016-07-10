@@ -17,9 +17,9 @@
 </head>
 <body>
 
-<custom:nav></custom:nav>
+	<custom:nav></custom:nav>
 	<div class="container-fluid">
-		
+
 		<article>
 			<header>
 				<h2>Article creation</h2>
@@ -41,13 +41,18 @@
 								<form:hidden path="content" id="content" />
 							</div>
 							<div class="form-group">
+								<label for="heading">Category</label>
+								<form:select path="category" class="form-control" id="category"
+									items="${articleCategories}" />
+							</div>
+							<div class="form-group">
 								<label for="heading">Author</label>
-								<form:input type="text" path="author" id="author"
+								<form:input type="text" path="userId" id="userId"
 									class="form-control" placeholder="Article Author" />
 							</div>
 							<div class="form-group">
-								<input type="submit" class="btn btn-default" value="Post" /> <input
-									type="reset" value="Clear" class="btn btn-default" />
+								<input type="submit" class="btn btn-success" value="Post" /> <input
+									type="reset" value="Clear" class="btn btn-danger" />
 							</div>
 						</form:form>
 					</div>
@@ -55,7 +60,7 @@
 			</div>
 		</article>
 	</div>
-<%-- 	<custom:footer></custom:footer> --%>
+	<%-- 	<custom:footer></custom:footer> --%>
 
 	<script>
 		$(document).ready(function() {

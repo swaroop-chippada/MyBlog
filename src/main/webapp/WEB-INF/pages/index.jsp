@@ -23,33 +23,57 @@
 		</div>
 	</c:if>
 
-	<div class="container-fluid text-center">
-		<div class="row content">
-			<!-- <div class="col-sm-2 sidenav">
-				<p><a href="#">Link</a></p>
-      <p><a href="#">Link</a></p>
-      <p><a href="#">Link</a></p> 
-			</div> -->
-			<div class="col-sm-12" style="min-height:500px">
-				<div class="text-left">
-					<header>
-						<h1>Latest Articles</h1>
-					</header>
-					<c:forEach var="article" items="${articleList}">
-						<h3>
-							<a href="article.html?articleId=${article.id}">${article.heading}</a>
-						</h3>
-					</c:forEach>
-				</div>
+	<div class="jumbotron">
+		<div class="container-fluid">
+			<h2>Welcome !</h2>
+			<p>Main purpose of this application is to help people learn
+				things about web technologies. I created this application to share
+				few concepts and methodologies which im quite familiar about.</p>
+		</div>
+	</div>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-xs-4">
+				<h2>JAVA</h2>
+				<p>The section will help you understand the basics of JAVA, so
+					that you can create your own web pages or website using JAVA.</p>
+				<p>
+					<a href="category?id=java" class="btn btn-primary">Click to see
+						JAVA articles</a>
+				</p>
 			</div>
-			<!-- <div class="col-sm-2 sidenav">
-				<div class="well">
-        <p>ADS</p>
-      </div>
-      <div class="well">
-        <p>ADS</p>
-      </div> 
-			</div> -->
+			<div class="col-xs-4">
+				<h2>Spring</h2>
+				<p>The section will help you understand the basics of Spring, so
+					that you can create high performing, easily testable and reusable
+					code.</p>
+				<p>
+					<a href="category?id=spring" class="btn btn-primary">Click to
+						see Spring articles</a>
+				</p>
+			</div>
+			<div class="col-xs-4">
+				<h2>Hibernate</h2>
+				<p>The section will help you understand the basics of Hibernate.
+					What is ORM and also some of the main features of Hibernate.</p>
+				<p>
+					<a href="category?id=hibernate" class="btn btn-primary">Click
+						to see Hibernate articles</a>
+				</p>
+			</div>
+		</div>
+		<hr>
+		<div class="row">
+			<div class="col-xs-12 text-left">
+				<header>
+					<h3>Recent Articles</h3>
+				</header>
+				<c:forEach var="article" items="${articleList}">
+					<p>
+						<a href="article.html?articleId=${article.id}">${article.heading}</a>
+					</p>
+				</c:forEach>
+			</div>
 		</div>
 	</div>
 
