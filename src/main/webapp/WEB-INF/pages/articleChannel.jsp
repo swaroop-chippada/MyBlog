@@ -16,7 +16,7 @@
 	<!-- Nav -->
 	<custom:nav active="home"></custom:nav>
 
-	<div class="container-fluid">
+	<div class="container-fluid article-page" >
 		<div class="row">
 			<div class="col-xs-12 text-left">
 				<header>
