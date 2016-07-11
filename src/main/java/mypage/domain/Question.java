@@ -7,7 +7,7 @@ import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
 import org.mongodb.morphia.annotations.Property;
 
-@Entity("question")
+@Entity("Question")
 public class Question {
 
 	@Id

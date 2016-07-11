@@ -2,8 +2,10 @@ package mypage.domain;
 
 import java.util.Date;
 
+import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
 
+@Entity("Article")
 public class Article {
 
 	@Id

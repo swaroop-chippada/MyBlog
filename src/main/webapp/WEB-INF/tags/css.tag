@@ -53,4 +53,9 @@ padding:30px;
 .social-icons{
 padding-bottom:5px;
 }
+.article-page{
+min-height:500px;
+padding-left:150px;
+padding-right:150px;
+}
 </style>

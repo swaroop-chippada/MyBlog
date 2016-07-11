@@ -30,8 +30,8 @@ public class GenericDAO {
 		morphia.mapPackage("mypage.domain");
 
 	}
-	
-	public void postQuestion(Question question){
+
+	public void postQuestion(Question question) {
 		dataStore.save(question);
 	}
 
@@ -43,17 +43,23 @@ public class GenericDAO {
 	public void createArticle(Article article) {
 		dataStore.save(article);
 	}
-	
+
 	public List<Article> getRecentArticles(int offset, int limit) {
-		QueryResults<Article> article = dataStore.find(Article.class).order("-modifiedDate").offset(offset).limit(limit);
+		QueryResults<Article> article = dataStore.find(Article.class).order("-modifiedDate").offset(offset)
+				.limit(limit);
 		return article.asList();
 	}
-	
-	public List<Article> getRecentArticles(int offset, int limit, String category) {
-		QueryResults<Article> article = dataStore.find(Article.class).filter("category", category).order("-modifiedDate").offset(offset).limit(limit);
+
+	public List<Article> getArticles(int offset, int limit, String category) {
+		QueryResults<Article> article = dataStore.find(Article.class).filter("category", category)
+				.order("-modifiedDate").offset(offset).limit(limit);
 		return article.asList();
 	}
-	
+
+	public long getArticlesCount(String category) {
+		return dataStore.find(Article.class).filter("category", category).countAll();
+	}
+
 	public Article getArticle(String id) {
 		Query<Article> article = dataStore.find(Article.class, "id", new ObjectId(id));
 		return article.get();

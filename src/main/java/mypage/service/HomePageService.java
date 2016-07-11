@@ -32,8 +32,12 @@ public class HomePageService {
 		return genericDAO.getRecentArticles(offset, limit);
 	}
 
-	public List<Article> getRecentArticles(int offset, int limit, String category) {
-		return genericDAO.getRecentArticles(offset, limit, category);
+	public List<Article> getArticles(int offset, int limit, String category) {
+		return genericDAO.getArticles(offset*5, limit, category);
+	}
+	
+	public long getArticlesCount(String category){
+		return genericDAO.getArticlesCount(category);
 	}
 
 	public Article getArticle(String id) {

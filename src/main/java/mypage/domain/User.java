@@ -1,13 +1,19 @@
 package mypage.domain;
 
+import org.mongodb.morphia.annotations.Entity;
+import org.mongodb.morphia.annotations.Id;
+
 import mypage.enums.UserType;
 
+@Entity("User")
 public class User {
 
+	@Id
 	private String userName;
 	private String password;
 	private String firstName;
 	private String lastName;
+	private UserType type;
 	
 	public String getUserName() {
 		return userName;
@@ -39,5 +45,4 @@ public class User {
 	public void setType(UserType type) {
 		this.type = type;
 	}
-	private UserType type;
 }

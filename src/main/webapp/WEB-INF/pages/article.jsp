@@ -14,10 +14,13 @@
 	<!-- Nav -->
 	<custom:nav></custom:nav>
 	<!-- Home -->
-	<div class="container-fluid" style="min-height:500px">
+	<div class="container-fluid article-page">
 		<div class="row content spacer">
 			<div class="12u">
-				<header class="text-center"><strong>${article.heading}</strong></header>
+				<header>
+					<h3>${article.heading}</h3>
+					<hr>
+				</header>
 				<p>${article.content}</p>
 			</div>
 		</div>

@@ -20,7 +20,7 @@
 		<div class="row">
 			<div class="col-xs-12 text-left">
 				<header>
-					<h3>${articleCategory} Articles</h3>
+					<h3>${category} Articles</h3>
 				</header>
 				<c:forEach var="article" items="${articleList}">
 					<p>
@@ -31,6 +31,10 @@
 		</div>
 	</div>
 
+	<ul class="pager">
+		<li class="<c:if test="${previous}">disabled</c:if>"><a href="category?id=${category}&offset=${offset-1}">Previous</a></li>
+		<li class="<c:if test="${next}">disabled</c:if>"><a href="category?id=${category}&offset=${offset+1}">Next</a></li>
+	</ul>
 	<custom:footer></custom:footer>
 
 </body>
