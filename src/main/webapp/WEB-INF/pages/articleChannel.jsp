@@ -16,24 +16,28 @@
 	<!-- Nav -->
 	<custom:nav active="home"></custom:nav>
 
-	<div class="container-fluid article-page" >
+	<div class="container-fluid page-layout">
 		<div class="row">
-			<div class="col-xs-12 text-left">
-				<header>
-					<h3>${category} Articles</h3>
-				</header>
-				<c:forEach var="article" items="${articleList}">
-					<p>
-						<a href="article.html?articleId=${article.id}">${article.heading}</a>
-					</p>
-				</c:forEach>
+			<div class="col-xs-12 text-left spacer">
+				<div class="panel panel-default">
+					<div class="panel-heading text-transformer"><h4>${category} Articles</h4></div>
+					<div class="panel-body">
+						<c:forEach var="article" items="${articleList}">
+							<p>
+								<a href="article.html?articleId=${article.id}">${article.heading}</a>
+							</p>
+						</c:forEach>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
 
 	<ul class="pager">
-		<li class="<c:if test="${previous}">disabled</c:if>"><a href="category?id=${category}&offset=${offset-1}">Previous</a></li>
-		<li class="<c:if test="${next}">disabled</c:if>"><a href="category?id=${category}&offset=${offset+1}">Next</a></li>
+		<li class="<c:if test="${previous}">disabled</c:if>"><a
+			href="category?id=${category}&offset=${offset-1}">Previous</a></li>
+		<li class="<c:if test="${next}">disabled</c:if>"><a
+			href="category?id=${category}&offset=${offset+1}">Next</a></li>
 	</ul>
 	<custom:footer></custom:footer>
 

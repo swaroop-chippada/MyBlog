@@ -31,7 +31,7 @@
 				few concepts and methodologies which im quite familiar about.</p>
 		</div>
 	</div>
-	<div class="container-fluid">
+	<div class="container-fluid page-layout">
 		<div class="row">
 			<div class="col-xs-4">
 				<h2>JAVA</h2>
@@ -65,14 +65,22 @@
 		<hr>
 		<div class="row">
 			<div class="col-xs-12 text-left">
-				<header>
-					<h3>Recent Articles</h3>
-				</header>
-				<c:forEach var="article" items="${articleList}">
-					<p>
-						<a href="article.html?articleId=${article.id}">${article.heading}</a>
-					</p>
-				</c:forEach>
+
+				<div class="panel panel-primary">
+					<div class="panel-heading">Recent Articles</div>
+					<div class="panel-body">
+						<div class="list-group">
+							<c:forEach var="article" items="${articleList}">
+								<a href="article.html?articleId=${article.id}"
+									class="list-group-item"> <span
+									class="badge ${article.category}">${article.category}</span>
+									${article.heading}
+								</a>
+
+							</c:forEach>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>

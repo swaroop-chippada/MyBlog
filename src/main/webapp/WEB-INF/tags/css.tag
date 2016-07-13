@@ -27,7 +27,7 @@ footer {
 	background-color: #555;
 	color: white;
 	width: 100%;
-    height: 100px;
+	height: 100px;
 }
 
 /* On small screens, set height to 'auto' for sidenav and grid */
@@ -41,21 +41,57 @@ footer {
 	}
 }
 
-.form-padding40{
-padding-bottom:40px;
+.form-padding40 {
+	padding-bottom: 40px;
 }
-.form-padding50{
-padding:50px;
+
+.form-padding50 {
+	padding: 50px;
 }
-.spacer{
-padding:30px;
+
+.spacer {
+	padding: 30px;
 }
-.social-icons{
-padding-bottom:5px;
+
+.social-icons {
+	padding-bottom: 5px;
 }
-.article-page{
-min-height:500px;
-padding-left:150px;
-padding-right:150px;
+
+.page-layout {
+	min-height: 500px;
+	padding-left: 150px;
+	padding-right: 150px;
 }
+
+.java {
+	background-color: #00cc00;
+}
+
+.spring {
+	background-color: #bbbb77;
+}
+
+.hibernate {
+	background-color: #c65353;
+}
+
+.solr {
+	background-color: #ffa366;
+}
+
+.angular {
+	background-color: #66ccff;
+}
+
+.mongo {
+	background-color: #c68c53;
+}
+
+.others {
+	background-color: #e6b3cc;
+}
+.text-transformer{
+text-transform: capitalize;
+}
+
 </style>

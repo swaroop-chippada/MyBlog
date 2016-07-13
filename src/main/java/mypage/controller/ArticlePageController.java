@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import mypage.domain.Article;
 import mypage.service.HomePageService;
+import mypage.utils.WebConstants;
 
 @Controller
 public class ArticlePageController {
@@ -31,7 +32,7 @@ public class ArticlePageController {
 		} else {
 			pageNo = Integer.parseInt(offset);
 		}
-		mav.addObject("articleList", homePageService.getArticles(pageNo, 5, category));
+		mav.addObject("articleList", homePageService.getArticles(pageNo, WebConstants.PAGE_SIZE, category));
 		mav.addObject("offset", pageNo);
 		mav.addObject("category", category);
 		pagination(mav, category, pageNo);
@@ -40,7 +41,7 @@ public class ArticlePageController {
 
 	private void pagination(ModelAndView mav, String category, int pageNo) {
 		long totalResults = homePageService.getArticlesCount(category);
-		int totalPages = (int) Math.ceil(totalResults / 5);
+		int totalPages = (int) Math.ceil(totalResults / WebConstants.PAGE_SIZE);
 		if (!(pageNo < totalPages)) {
 			mav.addObject("next", true);
 		}
@@ -78,7 +79,7 @@ public class ArticlePageController {
 		article.setCreatedDate(new Date());
 		article.setModifiedDate(new Date());
 		homePageService.createArticle(article);
-		mav.addObject("articleList", homePageService.getRecentArticles(0, 5));
+		mav.addObject("articleList", homePageService.getRecentArticles(0, WebConstants.PAGE_SIZE));
 		mav.addObject("articleCreated", true);
 		return mav;
 	}
