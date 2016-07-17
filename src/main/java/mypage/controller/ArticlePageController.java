@@ -23,8 +23,8 @@ public class ArticlePageController {
 	@Autowired
 	private HomePageService homePageService;
 
-	@RequestMapping(value = "/category", method = RequestMethod.GET)
-	public ModelAndView categoryPage(@RequestParam(value="id",required=true) String category, @RequestParam(value="offset",required=false) String offset) {
+	@RequestMapping(value = "/tag", method = RequestMethod.GET)
+	public ModelAndView categoryPage(@RequestParam(value="id",required=true) String tag, @RequestParam(value="offset",required=false) String offset) {
 		ModelAndView mav = new ModelAndView("articleChannel");
 		int pageNo;
 		if (StringUtils.isEmpty(offset)) {
@@ -32,15 +32,15 @@ public class ArticlePageController {
 		} else {
 			pageNo = Integer.parseInt(offset);
 		}
-		mav.addObject("articleList", homePageService.getArticles(pageNo, WebConstants.PAGE_SIZE, category));
+		mav.addObject("articleList", homePageService.getArticles(pageNo, WebConstants.PAGE_SIZE, tag));
 		mav.addObject("offset", pageNo);
-		mav.addObject("category", category);
-		pagination(mav, category, pageNo);
+		mav.addObject("category", tag);
+		pagination(mav, tag, pageNo);
 		return mav;
 	}
 
-	private void pagination(ModelAndView mav, String category, int pageNo) {
-		long totalResults = homePageService.getArticlesCount(category);
+	private void pagination(ModelAndView mav, String tag, int pageNo) {
+		long totalResults = homePageService.getArticlesCount(tag);
 		int totalPages = (int) Math.ceil(totalResults / WebConstants.PAGE_SIZE);
 		if (!(pageNo < totalPages)) {
 			mav.addObject("next", true);

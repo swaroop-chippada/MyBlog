@@ -20,7 +20,7 @@
 		<div class="row">
 			<div class="col-xs-12 text-left spacer">
 				<div class="panel panel-default">
-					<div class="panel-heading text-transformer"><h4>${category} Articles</h4></div>
+					<div class="panel-heading text-transformer"><h4>${tag} Articles</h4></div>
 					<div class="panel-body">
 						<c:forEach var="article" items="${articleList}">
 							<p>
@@ -35,9 +35,9 @@
 
 	<ul class="pager">
 		<li class="<c:if test="${previous}">disabled</c:if>"><a
-			href="category?id=${category}&offset=${offset-1}">Previous</a></li>
+			href="tag?id=${tag}&offset=${offset-1}">Previous</a></li>
 		<li class="<c:if test="${next}">disabled</c:if>"><a
-			href="category?id=${category}&offset=${offset+1}">Next</a></li>
+			href="tag?id=${tag}&offset=${offset+1}">Next</a></li>
 	</ul>
 	<custom:footer></custom:footer>
 

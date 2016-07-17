@@ -58,7 +58,7 @@
 			<div class="col-sm-12">
 				<div class="container col-sm-12 text-left">
 					<header class="spacer">
-						<h4>Following are some technologies which i have worked on.</h4>
+						<h4>Following are some technologies and frameworks which i have worked on.</h4>
 					</header>
 					<div class="col-sm-2">
 						<img src="<c:url value="/resources/images/javalogo.png"/>"

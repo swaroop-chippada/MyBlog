@@ -50,14 +50,14 @@ public class GenericDAO {
 		return article.asList();
 	}
 
-	public List<Article> getArticles(int offset, int limit, String category) {
-		QueryResults<Article> article = dataStore.find(Article.class).filter("category", category)
+	public List<Article> getArticles(int offset, int limit, String tag) {
+		QueryResults<Article> article = dataStore.find(Article.class).filter("tags", tag)
 				.order("-modifiedDate").offset(offset).limit(limit);
 		return article.asList();
 	}
 
-	public long getArticlesCount(String category) {
-		return dataStore.find(Article.class).filter("category", category).countAll();
+	public long getArticlesCount(String tag) {
+		return dataStore.find(Article.class).filter("tags", tag).countAll();
 	}
 
 	public Article getArticle(String id) {

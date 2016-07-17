@@ -12,8 +12,15 @@
 <link
 	href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.css"
 	rel="stylesheet">
+<link href="<c:url value="/resources/assets/css/tagit.ui-zendesk.css"/>"
+	rel="stylesheet" type="text/css">
+<link href="<c:url value="/resources/assets/css/jquery.tagit.css"/>"
+	rel="stylesheet" type="text/css">
+
 <script
 	src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.js"></script>
+<script src="<c:url value="/resources/assets/js/tag-it.min.js"/>"
+	type="text/javascript" charset="utf-8"></script>
 </head>
 <body>
 
@@ -41,9 +48,8 @@
 								<form:hidden path="content" id="content" />
 							</div>
 							<div class="form-group">
-								<label for="heading">Category</label>
-								<form:select path="category" class="form-control" id="category"
-									items="${articleCategories}" />
+								<label for="heading">Tags</label>
+								<form:input path="category" class="form-control" id="tags" />
 							</div>
 							<div class="form-group">
 								<label for="heading">Author</label>
@@ -63,13 +69,24 @@
 	<%-- 	<custom:footer></custom:footer> --%>
 
 	<script>
-		$(document).ready(function() {
-			var textArea = $('#textEditor').summernote({
-				height : 300, // set editor height
-				minHeight : null, // set minimum height of editor
-				maxHeight : null, // set maximum height of editor
-			});
-		});
+		$(document).ready(
+				function() {
+					var textArea = $('#textEditor').summernote({
+						height : 300, // set editor height
+						minHeight : null, // set minimum height of editor
+						maxHeight : null, // set maximum height of editor
+					});
+
+					var sampleTags = [ 'c++', 'java', 'php', 'coldfusion',
+							'javascript', 'asp', 'ruby', 'python', 'c',
+							'scala', 'groovy', 'haskell', 'perl', 'erlang',
+							'apl', 'cobol', 'go', 'lua' ];
+
+					//-------------------------------
+					// Minimal
+					//-------------------------------
+					$('#tags').tagit();
+				});
 
 		function beforeSubmit() {
 			$('#content').val($('#textEditor').summernote('code'));

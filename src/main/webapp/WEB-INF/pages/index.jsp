@@ -38,7 +38,7 @@
 				<p>The section will help you understand the basics of JAVA, so
 					that you can create your own web pages or website using JAVA.</p>
 				<p>
-					<a href="category?id=java" class="btn btn-primary">Click to see
+					<a href="tag?id=java" class="btn btn-primary">Click to see
 						JAVA articles</a>
 				</p>
 			</div>
@@ -48,7 +48,7 @@
 					that you can create high performing, easily testable and reusable
 					code.</p>
 				<p>
-					<a href="category?id=spring" class="btn btn-primary">Click to
+					<a href="tag?id=spring" class="btn btn-primary">Click to
 						see Spring articles</a>
 				</p>
 			</div>
@@ -57,7 +57,7 @@
 				<p>The section will help you understand the basics of Hibernate.
 					What is ORM and also some of the main features of Hibernate.</p>
 				<p>
-					<a href="category?id=hibernate" class="btn btn-primary">Click
+					<a href="tag?id=hibernate" class="btn btn-primary">Click
 						to see Hibernate articles</a>
 				</p>
 			</div>
@@ -72,8 +72,11 @@
 						<div class="list-group">
 							<c:forEach var="article" items="${articleList}">
 								<a href="article.html?articleId=${article.id}"
-									class="list-group-item"> <span
-									class="badge ${article.category}">${article.category}</span>
+									class="list-group-item"> 
+									<c:forEach items="${article.tags}" var="tag">
+									<span
+									class="badge ${tag}">${tag}</span>
+									</c:forEach>
 									${article.heading}
 								</a>
 

@@ -4,6 +4,8 @@ import java.util.Date;
 
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
+import org.mongodb.morphia.annotations.Transient;
+import org.springframework.util.StringUtils;
 
 @Entity("Article")
 public class Article {
@@ -13,7 +15,9 @@ public class Article {
 	private String heading;
 	private String content;
 	private String userId;
+	@Transient
 	private String category;
+	private String[] tags;
 	private Date createdDate;
 	private Date modifiedDate;
 
@@ -66,11 +70,25 @@ public class Article {
 	}
 
 	public String getCategory() {
+		if (this.tags != null && this.tags.length > 0) {
+			category = StringUtils.arrayToCommaDelimitedString(tags);
+		}
 		return category;
 	}
 
 	public void setCategory(String category) {
 		this.category = category;
+		if (!StringUtils.isEmpty(category)) {
+			tags = category.split(",");
+		}
+	}
+
+	public String[] getTags() {
+		return tags;
+	}
+
+	public void setTags(String[] tags) {
+		this.tags = tags;
 	}
 
 }
