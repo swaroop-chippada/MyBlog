@@ -14,6 +14,7 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li class="<c:if test="${active eq 'home'}">active</c:if>"><a href="Home">Home</a></li>
+        <li class="<c:if test="${active eq 'news'}">active</c:if>"><a href="tag?id=news">Tech News</a></li>
         <li class="<c:if test="${active eq 'aboutme'}">active</c:if>"><a href="about">About Me</a></li>
       </ul>
       <!-- <ul class="nav navbar-nav navbar-right">

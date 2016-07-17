@@ -90,8 +90,13 @@ footer {
 .others {
 	background-color: #e6b3cc;
 }
-.text-transformer{
-text-transform: capitalize;
+
+.text-transformer {
+	text-transform: capitalize;
 }
 
+.author {
+	font-weight: 600;
+	color: #0c67a7;
+}
 </style>

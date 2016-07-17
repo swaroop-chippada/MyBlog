@@ -19,6 +19,9 @@
 			<div class="12u">
 				<header>
 					<h3>${article.heading}</h3>
+					<div>By:
+					<span class="author">${article.userId}</span>
+					</div>
 					<hr>
 				</header>
 				<p>${article.content}</p>

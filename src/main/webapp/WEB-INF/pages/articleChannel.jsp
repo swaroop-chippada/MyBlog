@@ -14,7 +14,7 @@
 <body>
 
 	<!-- Nav -->
-	<custom:nav active="home"></custom:nav>
+	<custom:nav active="${tag}"></custom:nav>
 
 	<div class="container-fluid page-layout">
 		<div class="row">

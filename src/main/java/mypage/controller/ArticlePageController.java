@@ -34,7 +34,7 @@ public class ArticlePageController {
 		}
 		mav.addObject("articleList", homePageService.getArticles(pageNo, WebConstants.PAGE_SIZE, tag));
 		mav.addObject("offset", pageNo);
-		mav.addObject("category", tag);
+		mav.addObject("tag", tag);
 		pagination(mav, tag, pageNo);
 		return mav;
 	}
@@ -61,15 +61,6 @@ public class ArticlePageController {
 	public ModelAndView createArticle() {
 		ModelAndView mav = new ModelAndView("createArticle");
 		mav.addObject("article", new Article());
-		Map<String, String> articleCategories = new LinkedHashMap<String, String>();
-		articleCategories.put("java", "Java");
-		articleCategories.put("spring", "Spring");
-		articleCategories.put("hibernate", "Hibernate");
-		articleCategories.put("solr", "Solr");
-		articleCategories.put("angular", "Angular JS");
-		articleCategories.put("mongo", "Mongo DB");
-		articleCategories.put("others", "Others");
-		mav.addObject("articleCategories", articleCategories);
 		return mav;
 	}
 
