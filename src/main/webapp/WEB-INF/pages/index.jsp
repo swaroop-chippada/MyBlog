@@ -25,10 +25,27 @@
 
 	<div class="jumbotron">
 		<div class="container-fluid">
-			<h2>Welcome !</h2>
+			<!-- <h2>Welcome !</h2>
 			<p>Main purpose of this application is to help people learn
 				things about web technologies. I created this application to share
-				few concepts and methodologies which im quite familiar about.</p>
+				few concepts and methodologies which im quite familiar about.</p> -->
+
+			<form method="get" action="search">
+				<div class="form-group form-padding40">
+					<div class="col-sm-3 text-right" style="font-size:21px">
+						<label>Search Articles</label>
+					</div>
+
+					<div class="col-sm-3">
+						<input id="query" placeholder="Search" name="query"
+							class="form-control" />
+					</div>
+					<div class="col-sm-3">
+						<input type="submit" value="Search" class="btn btn-success" />
+					</div>
+
+				</div>
+				<form>
 		</div>
 	</div>
 	<div class="container-fluid page-layout">
@@ -38,8 +55,8 @@
 				<p>The section will help you understand the basics of JAVA, so
 					that you can create your own web pages or website using JAVA.</p>
 				<p>
-					<a href="tag?id=java" class="btn btn-primary">Click to see
-						JAVA articles</a>
+					<a href="tag?id=java" class="btn btn-primary">Click to see JAVA
+						articles</a>
 				</p>
 			</div>
 			<div class="col-xs-4">
@@ -48,8 +65,8 @@
 					that you can create high performing, easily testable and reusable
 					code.</p>
 				<p>
-					<a href="tag?id=spring" class="btn btn-primary">Click to
-						see Spring articles</a>
+					<a href="tag?id=spring" class="btn btn-primary">Click to see
+						Spring articles</a>
 				</p>
 			</div>
 			<div class="col-xs-4">
@@ -57,8 +74,8 @@
 				<p>The section will help you understand the basics of Hibernate.
 					What is ORM and also some of the main features of Hibernate.</p>
 				<p>
-					<a href="tag?id=hibernate" class="btn btn-primary">Click
-						to see Hibernate articles</a>
+					<a href="tag?id=hibernate" class="btn btn-primary">Click to see
+						Hibernate articles</a>
 				</p>
 			</div>
 		</div>
@@ -72,12 +89,10 @@
 						<div class="list-group">
 							<c:forEach var="article" items="${articleList}">
 								<a href="article.html?articleId=${article.id}"
-									class="list-group-item"> 
-									<c:forEach items="${article.tags}" var="tag">
-									<span
-									class="badge ${tag}">${tag}</span>
-									</c:forEach>
-									${article.heading}
+									class="list-group-item"> <c:forEach items="${article.tags}"
+										var="tag">
+										<span class="badge ${tag}">${tag}</span>
+									</c:forEach> ${article.heading}
 								</a>
 
 							</c:forEach>

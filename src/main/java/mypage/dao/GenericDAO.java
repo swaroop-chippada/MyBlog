@@ -55,11 +55,19 @@ public class GenericDAO {
 				.order("-modifiedDate").offset(offset).limit(limit);
 		return article.asList();
 	}
+	
+	public List<Article> getSearchResults(int offset, int limit, String query) {
+		QueryResults<Article> article = dataStore.find(Article.class).search(query).offset(offset).limit(limit);
+		return article.asList();
+	}
 
 	public long getArticlesCount(String tag) {
 		return dataStore.find(Article.class).filter("tags", tag).countAll();
 	}
 
+	public long getSearchResultsCount(String query) {
+		return dataStore.find(Article.class).search(query).countAll();
+	}
 	public Article getArticle(String id) {
 		Query<Article> article = dataStore.find(Article.class, "id", new ObjectId(id));
 		return article.get();

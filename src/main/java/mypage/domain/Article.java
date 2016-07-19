@@ -3,11 +3,16 @@ package mypage.domain;
 import java.util.Date;
 
 import org.mongodb.morphia.annotations.Entity;
+import org.mongodb.morphia.annotations.Field;
 import org.mongodb.morphia.annotations.Id;
+import org.mongodb.morphia.annotations.Index;
+import org.mongodb.morphia.annotations.Indexes;
 import org.mongodb.morphia.annotations.Transient;
+import org.mongodb.morphia.utils.IndexType;
 import org.springframework.util.StringUtils;
 
 @Entity("Article")
+@Indexes(@Index(fields = @Field(value = "content", type = IndexType.TEXT)))
 public class Article {
 
 	@Id

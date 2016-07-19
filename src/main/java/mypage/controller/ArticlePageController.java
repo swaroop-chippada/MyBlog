@@ -1,8 +1,6 @@
 package mypage.controller;
 
 import java.util.Date;
-import java.util.LinkedHashMap;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,7 +22,8 @@ public class ArticlePageController {
 	private HomePageService homePageService;
 
 	@RequestMapping(value = "/tag", method = RequestMethod.GET)
-	public ModelAndView categoryPage(@RequestParam(value="id",required=true) String tag, @RequestParam(value="offset",required=false) String offset) {
+	public ModelAndView tagSearch(@RequestParam(value = "id", required = true) String tag,
+			@RequestParam(value = "offset", required = false) String offset) {
 		ModelAndView mav = new ModelAndView("articleChannel");
 		int pageNo;
 		if (StringUtils.isEmpty(offset)) {
@@ -32,15 +31,34 @@ public class ArticlePageController {
 		} else {
 			pageNo = Integer.parseInt(offset);
 		}
-		mav.addObject("articleList", homePageService.getArticles(pageNo, WebConstants.PAGE_SIZE, tag));
+		mav.addObject("articleList",
+				homePageService.getArticlesForTag(pageNo * WebConstants.PAGE_SIZE, WebConstants.PAGE_SIZE, tag));
 		mav.addObject("offset", pageNo);
 		mav.addObject("tag", tag);
-		pagination(mav, tag, pageNo);
+		long totalResults = homePageService.getArticlesCount(tag);
+		pagination(mav, pageNo, totalResults);
 		return mav;
 	}
 
-	private void pagination(ModelAndView mav, String tag, int pageNo) {
-		long totalResults = homePageService.getArticlesCount(tag);
+	@RequestMapping(value = "/search", method = RequestMethod.GET)
+	public ModelAndView search(@RequestParam(value = "query", required = true) String query,
+			@RequestParam(value = "offset", required = false) String offset) {
+		ModelAndView mav = new ModelAndView("searchResults");
+		int pageNo;
+		if (StringUtils.isEmpty(offset)) {
+			pageNo = 0;
+		} else {
+			pageNo = Integer.parseInt(offset);
+		}
+		mav.addObject("articleList", homePageService.getSearchResults(pageNo * WebConstants.PAGE_SIZE, WebConstants.PAGE_SIZE, query));
+		mav.addObject("offset", pageNo);
+		mav.addObject("query", query);
+		long totalResults = homePageService.getSearchResultsCount(query);
+		pagination(mav, pageNo, totalResults);
+		return mav;
+	}
+
+	private void pagination(ModelAndView mav, int pageNo,long totalResults ) {
 		int totalPages = (int) Math.ceil(totalResults / WebConstants.PAGE_SIZE);
 		if (!(pageNo < totalPages)) {
 			mav.addObject("next", true);
