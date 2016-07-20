@@ -22,6 +22,7 @@ public class Article {
 	private String userId;
 	@Transient
 	private String category;
+	private String imageUrl;
 	private String[] tags;
 	private Date createdDate;
 	private Date modifiedDate;
@@ -94,6 +95,14 @@ public class Article {
 
 	public void setTags(String[] tags) {
 		this.tags = tags;
+	}
+
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
 	}
 
 }

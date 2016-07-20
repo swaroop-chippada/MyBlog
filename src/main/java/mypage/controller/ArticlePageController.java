@@ -24,7 +24,12 @@ public class ArticlePageController {
 	@RequestMapping(value = "/tag", method = RequestMethod.GET)
 	public ModelAndView tagSearch(@RequestParam(value = "id", required = true) String tag,
 			@RequestParam(value = "offset", required = false) String offset) {
-		ModelAndView mav = new ModelAndView("articleChannel");
+		String viewName = "articleChannel";
+		if ("news".equalsIgnoreCase(tag)) {
+			viewName = "techNews";
+		}
+		
+		ModelAndView mav = new ModelAndView(viewName );
 		int pageNo;
 		if (StringUtils.isEmpty(offset)) {
 			pageNo = 0;
@@ -50,7 +55,8 @@ public class ArticlePageController {
 		} else {
 			pageNo = Integer.parseInt(offset);
 		}
-		mav.addObject("articleList", homePageService.getSearchResults(pageNo * WebConstants.PAGE_SIZE, WebConstants.PAGE_SIZE, query));
+		mav.addObject("articleList",
+				homePageService.getSearchResults(pageNo * WebConstants.PAGE_SIZE, WebConstants.PAGE_SIZE, query));
 		mav.addObject("offset", pageNo);
 		mav.addObject("query", query);
 		long totalResults = homePageService.getSearchResultsCount(query);
@@ -58,7 +64,7 @@ public class ArticlePageController {
 		return mav;
 	}
 
-	private void pagination(ModelAndView mav, int pageNo,long totalResults ) {
+	private void pagination(ModelAndView mav, int pageNo, long totalResults) {
 		int totalPages = (int) Math.ceil(totalResults / WebConstants.PAGE_SIZE);
 		if (!(pageNo < totalPages)) {
 			mav.addObject("next", true);

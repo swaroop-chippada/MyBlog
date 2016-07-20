@@ -42,9 +42,12 @@
 									id="heading" placeholder="Article heading" />
 							</div>
 							<div class="form-group">
-								<div id="textEditor">
-									<p>New Article</p>
-								</div>
+								<label for="heading">Article Image URL</label>
+								<form:input type="text" path="imageUrl" class="form-control"
+									id="imageUrl" placeholder="Place the image url here...." />
+							</div>
+							<div class="form-group">
+								<div id="textEditor"></div>
 								<form:hidden path="content" id="content" />
 							</div>
 							<div class="form-group">
@@ -73,6 +76,7 @@
 				function() {
 					var textArea = $('#textEditor').summernote({
 						height : 300, // set editor height
+						placeholder : 'write here...',
 						minHeight : null, // set minimum height of editor
 						maxHeight : null, // set maximum height of editor
 					});
