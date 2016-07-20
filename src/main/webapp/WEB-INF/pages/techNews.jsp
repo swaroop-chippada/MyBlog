@@ -18,7 +18,7 @@
 	<!-- Nav -->
 	<custom:nav active="${tag}"></custom:nav>
 
-	<div class="container-fluid page-layout">
+	<div class="container-fluid page-layout-news">
 		<div id="wrapper">
 			<div id="columns">
 				<c:forEach var="article" items="${articleList}">
