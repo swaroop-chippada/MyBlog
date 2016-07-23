@@ -15,13 +15,6 @@
 
 	<!-- Nav -->
 	<custom:nav active="home"></custom:nav>
-	<c:if test="${articleCreated}">
-		<div class="alert alert-block">
-			<button type="button" class="close" data-dismiss="alert">&times;</button>
-			<h4>Successfully!</h4>
-			Article is successfully published.
-		</div>
-	</c:if>
 
 	<div class="jumbotron">
 		<div class="container-fluid">

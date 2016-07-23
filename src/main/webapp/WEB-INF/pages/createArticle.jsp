@@ -25,6 +25,14 @@
 <body>
 
 	<custom:nav></custom:nav>
+	<c:if test="${articleCreated or articleUpdated}">
+		<div class="alert alert-block">
+			<button type="button" class="close" data-dismiss="alert">&times;</button>
+			<h4>Successfully!</h4>
+			<c:if test="${articleCreated}">Article is successfully published.</c:if>
+			<c:if test="${articleUpdated}">Article is successfully updated.</c:if>
+		</div>
+	</c:if>
 	<div class="container-fluid">
 
 		<article>
@@ -60,6 +68,7 @@
 									class="form-control" placeholder="Article Author" />
 							</div>
 							<div class="form-group">
+								<form:hidden path="id"/>
 								<input type="submit" class="btn btn-success" value="Post" /> <input
 									type="reset" value="Clear" class="btn btn-danger" />
 							</div>

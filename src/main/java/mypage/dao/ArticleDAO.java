@@ -4,49 +4,21 @@ import java.util.List;
 
 import org.bson.types.ObjectId;
 import org.mongodb.morphia.Datastore;
-import org.mongodb.morphia.Morphia;
 import org.mongodb.morphia.query.Query;
 import org.mongodb.morphia.query.QueryResults;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.util.StringUtils;
-
-import com.mongodb.MongoClient;
-import com.mongodb.MongoClientURI;
 
 import mypage.domain.Article;
-import mypage.domain.Question;
 
 @Repository
-public class GenericDAO {
-
+public class ArticleDAO {
+	
+	@Autowired
+	DataStoreTemplate dataStoreTemplate;
+	
 	Datastore dataStore;
-
-	public GenericDAO() {
-		Morphia morphia = new Morphia();
-		String dbName = "myproject";
-		String host;
-		if (!StringUtils.isEmpty(System.getenv("MONGODB_URI"))) {
-			host = System.getenv("MONGODB_URI");
-		} else {
-			host = System.getProperty("MONGODB_URL");
-		}
-
-		MongoClient mongoClient = new MongoClient(new MongoClientURI(host));
-
-		dataStore = morphia.createDatastore(mongoClient, dbName);
-		morphia.mapPackage("mypage.domain");
-
-	}
-
-	public void postQuestion(Question question) {
-		dataStore.save(question);
-	}
-
-	public List<Question> getQuestions() {
-		QueryResults<Question> question = dataStore.find(Question.class);
-		return question.asList();
-	}
-
+	
 	public void createArticle(Article article) {
 		dataStore.save(article);
 	}
@@ -79,5 +51,10 @@ public class GenericDAO {
 	public Article getArticle(String id) {
 		Query<Article> article = dataStore.find(Article.class, "id", new ObjectId(id));
 		return article.get();
+	}
+	
+	public void setDataStoreTemplate(DataStoreTemplate dataStoreTemplate) {
+		this.dataStoreTemplate = dataStoreTemplate;
+		dataStore = dataStoreTemplate.getDataStore();
 	}
 }

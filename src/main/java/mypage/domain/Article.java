@@ -2,6 +2,7 @@ package mypage.domain;
 
 import java.util.Date;
 
+import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Field;
 import org.mongodb.morphia.annotations.Id;
@@ -26,9 +27,12 @@ public class Article {
 	private String[] tags;
 	private Date createdDate;
 	private Date modifiedDate;
+	private Date publicationDate;
 	private String articleUrl;
 	private Long status;
 	private boolean fromFeed;
+	private String feedProviderName;
+	
 
 	public String getId() {
 		return id;
@@ -136,5 +140,20 @@ public class Article {
 		this.fromFeed = fromFeed;
 	}
 
+	public String getFeedProviderName() {
+		return feedProviderName;
+	}
 
+	public void setFeedProviderName(String feedProviderName) {
+		this.feedProviderName = feedProviderName;
+	}
+
+	public Date getPublicationDate() {
+		return publicationDate;
+	}
+
+	public void setPublicationDate(Date publicationDate) {
+		this.publicationDate = publicationDate;
+	}
+	
 }

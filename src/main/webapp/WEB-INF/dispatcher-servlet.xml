@@ -22,6 +22,16 @@
 		<property name="suffix" value=".jsp" />
 	</bean>
 
+	<bean id="dataStoreTemplate" class="mypage.dao.DataStoreTemplate" ></bean>
+
+	<bean id="articleDAO" class="mypage.dao.ArticleDAO" depends-on="dataStoreTemplate">
+		<property name="dataStoreTemplate" ref="dataStoreTemplate"></property>
+	</bean>
+	
+	<bean id="homePageDAO" class="mypage.dao.HomePageDAO" depends-on="dataStoreTemplate">
+		<property name="dataStoreTemplate" ref="dataStoreTemplate"></property>
+	</bean>
+
 	<mvc:annotation-driven />
 
 </beans>

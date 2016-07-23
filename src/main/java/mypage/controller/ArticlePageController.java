@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import mypage.domain.Article;
-import mypage.service.HomePageService;
+import mypage.service.ArticlePageService;
 import mypage.utils.WebConstants;
 import mypage.utils.WebUtils;
 
@@ -22,7 +22,7 @@ import mypage.utils.WebUtils;
 public class ArticlePageController {
 
 	@Autowired
-	private HomePageService homePageService;
+	private ArticlePageService articlePageService;
 
 	@RequestMapping(value = "/tag", method = RequestMethod.GET)
 	public ModelAndView tagSearch(@RequestParam(value = "id", required = true) String tag,
@@ -31,8 +31,8 @@ public class ArticlePageController {
 		if ("news".equalsIgnoreCase(tag)) {
 			viewName = "techNews";
 		}
-		
-		ModelAndView mav = new ModelAndView(viewName );
+
+		ModelAndView mav = new ModelAndView(viewName);
 		int pageNo;
 		if (StringUtils.isEmpty(offset)) {
 			pageNo = 0;
@@ -40,10 +40,10 @@ public class ArticlePageController {
 			pageNo = Integer.parseInt(offset);
 		}
 		mav.addObject("articleList",
-				homePageService.getArticlesForTag(pageNo * WebConstants.PAGE_SIZE, WebConstants.PAGE_SIZE, tag));
+				articlePageService.getArticlesForTag(pageNo * WebConstants.PAGE_SIZE, WebConstants.PAGE_SIZE, tag));
 		mav.addObject("offset", pageNo);
 		mav.addObject("tag", tag);
-		long totalResults = homePageService.getArticlesCount(tag);
+		long totalResults = articlePageService.getArticlesCount(tag);
 		pagination(mav, pageNo, totalResults);
 		return mav;
 	}
@@ -59,10 +59,10 @@ public class ArticlePageController {
 			pageNo = Integer.parseInt(offset);
 		}
 		mav.addObject("articleList",
-				homePageService.getSearchResults(pageNo * WebConstants.PAGE_SIZE, WebConstants.PAGE_SIZE, query));
+				articlePageService.getSearchResults(pageNo * WebConstants.PAGE_SIZE, WebConstants.PAGE_SIZE, query));
 		mav.addObject("offset", pageNo);
 		mav.addObject("query", query);
-		long totalResults = homePageService.getSearchResultsCount(query);
+		long totalResults = articlePageService.getSearchResultsCount(query);
 		pagination(mav, pageNo, totalResults);
 		return mav;
 	}
@@ -71,7 +71,7 @@ public class ArticlePageController {
 	public ModelAndView article(HttpServletRequest request) {
 		String articleId = WebUtils.getArticleId(request.getRequestURI());
 		ModelAndView mav = new ModelAndView("article");
-		mav.addObject("article", homePageService.getArticle(articleId));
+		mav.addObject("article", articlePageService.getArticle(articleId));
 		return mav;
 	}
 
@@ -84,18 +84,36 @@ public class ArticlePageController {
 
 	@RequestMapping(value = "/articleCreation.do", method = RequestMethod.POST)
 	public ModelAndView articleCreation(@ModelAttribute("article") Article article) {
-		ModelAndView mav = new ModelAndView("index");
-		article.setCreatedDate(new Date());
-		article.setModifiedDate(new Date());
-		article.setFromFeed(false);
-		article.setStatus(1L);
-		article.setArticleUrl(WebUtils.convertToArticleUrl(article.getHeading()));
-		homePageService.createArticle(article);
-		mav.addObject("articleList", homePageService.getRecentArticles(0, WebConstants.PAGE_SIZE));
-		mav.addObject("articleCreated", true);
+		ModelAndView mav = new ModelAndView("createArticle");
+		if (StringUtils.isEmpty(article.getId())) {
+			article.setId(null);
+			article.setCreatedDate(new Date());
+			article.setModifiedDate(new Date());
+			article.setFromFeed(false);
+			article.setStatus(1L);
+			article.setArticleUrl(WebUtils.convertToArticleUrl(article.getHeading()));
+			articlePageService.createArticle(article);
+			mav.addObject("articleCreated", true);
+		} else {
+			Article originalArticle = articlePageService.getArticle(article.getId());
+			updateArticleChanges(originalArticle, article);
+			articlePageService.createArticle(originalArticle);
+			mav.addObject("articleUpdated", true);
+		}
+		
+		mav.addObject("article", article);
 		return mav;
 	}
-	
+
+	private void updateArticleChanges(Article original, Article modified) {
+		original.setHeading(modified.getHeading());
+		original.setTags(modified.getTags());
+		original.setContent(modified.getContent());
+		original.setImageUrl(modified.getImageUrl());
+		original.setUserId(modified.getUserId());
+		original.setModifiedDate(new Date());
+	}
+
 	private void pagination(ModelAndView mav, int pageNo, long totalResults) {
 		int totalPages = (int) Math.ceil(totalResults / WebConstants.PAGE_SIZE);
 		if (!(pageNo < totalPages)) {
@@ -106,8 +124,8 @@ public class ArticlePageController {
 		}
 	}
 
-	public void setHomePageService(HomePageService homePageService) {
-		this.homePageService = homePageService;
+	public void setArticlePageService(ArticlePageService articlePageService) {
+		this.articlePageService = articlePageService;
 	}
 
 }
