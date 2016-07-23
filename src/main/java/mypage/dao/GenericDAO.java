@@ -8,6 +8,7 @@ import org.mongodb.morphia.Morphia;
 import org.mongodb.morphia.query.Query;
 import org.mongodb.morphia.query.QueryResults;
 import org.springframework.stereotype.Repository;
+import org.springframework.util.StringUtils;
 
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
@@ -23,7 +24,13 @@ public class GenericDAO {
 	public GenericDAO() {
 		Morphia morphia = new Morphia();
 		String dbName = "myproject";
-		MongoClient mongoClient = new MongoClient(new MongoClientURI(System.getProperty("MONGODB_URL")));
+		String host;
+		if(StringUtils.isEmpty(System.getenv("MONGODB_URL"))){
+			host = System.getenv("MONGODB_URL");
+		}else{
+			host = System.getProperty("MONGODB_URL");
+		}
+		MongoClient mongoClient = new MongoClient(host);
 
 		dataStore = morphia.createDatastore(mongoClient, dbName);
 		morphia.mapPackage("mypage.domain");
