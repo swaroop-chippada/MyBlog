@@ -11,7 +11,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
 
 import com.mongodb.MongoClient;
-import com.mongodb.MongoClientURI;
 
 import mypage.domain.Article;
 import mypage.domain.Question;
