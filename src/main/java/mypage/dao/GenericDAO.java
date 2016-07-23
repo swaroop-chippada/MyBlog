@@ -24,8 +24,8 @@ public class GenericDAO {
 		Morphia morphia = new Morphia();
 		String dbName = "myproject";
 		String host;
-		if(!StringUtils.isEmpty(System.getenv("MONGODB_URL"))){
-			host = System.getenv("MONGODB_URL");
+		if(!StringUtils.isEmpty(System.getenv("MONGODB_URI"))){
+			host = System.getenv("MONGODB_URI");
 		}else{
 			host = System.getProperty("MONGODB_URL");
 		}
