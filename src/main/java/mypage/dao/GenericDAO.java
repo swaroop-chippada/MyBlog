@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
 
 import com.mongodb.MongoClient;
+import com.mongodb.MongoClientURI;
 
 import mypage.domain.Article;
 import mypage.domain.Question;
@@ -23,13 +24,14 @@ public class GenericDAO {
 	public GenericDAO() {
 		Morphia morphia = new Morphia();
 		String dbName = "myproject";
-		String host = "mongodb://swapadmin:projectblog@ds017584.mlab.com:17584/myproject";
-//		if(!StringUtils.isEmpty(System.getenv("MONGODB_URI"))){
-//			host = System.getenv("MONGODB_URI");
-//		}else{
-//			host = System.getProperty("MONGODB_URL");
-//		}
-		MongoClient mongoClient = new MongoClient(host);
+		String host;
+		if (!StringUtils.isEmpty(System.getenv("MONGODB_URI"))) {
+			host = System.getenv("MONGODB_URI");
+		} else {
+			host = System.getProperty("MONGODB_URL");
+		}
+
+		MongoClient mongoClient = new MongoClient(new MongoClientURI(host));
 
 		dataStore = morphia.createDatastore(mongoClient, dbName);
 		morphia.mapPackage("mypage.domain");
