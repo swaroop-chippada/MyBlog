@@ -23,12 +23,12 @@ public class GenericDAO {
 	public GenericDAO() {
 		Morphia morphia = new Morphia();
 		String dbName = "myproject";
-		String host;
-		if(!StringUtils.isEmpty(System.getenv("MONGODB_URI"))){
-			host = System.getenv("MONGODB_URI");
-		}else{
-			host = System.getProperty("MONGODB_URL");
-		}
+		String host = "mongodb://swapadmin:projectblog@ds017584.mlab.com:17584/myproject";
+//		if(!StringUtils.isEmpty(System.getenv("MONGODB_URI"))){
+//			host = System.getenv("MONGODB_URI");
+//		}else{
+//			host = System.getProperty("MONGODB_URL");
+//		}
 		MongoClient mongoClient = new MongoClient(host);
 
 		dataStore = morphia.createDatastore(mongoClient, dbName);
