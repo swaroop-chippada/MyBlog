@@ -24,7 +24,7 @@
 					<div class="panel-body">
 						<c:forEach var="article" items="${articleList}">
 							<p>
-								<a href="article.html?articleId=${article.id}">${article.heading}</a>
+								<a href="${article.relativeUrl}">${article.heading}</a>
 							</p>
 						</c:forEach>
 					</div>

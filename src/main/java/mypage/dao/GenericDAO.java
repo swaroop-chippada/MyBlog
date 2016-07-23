@@ -23,8 +23,7 @@ public class GenericDAO {
 	public GenericDAO() {
 		Morphia morphia = new Morphia();
 		String dbName = "myproject";
-		MongoClient mongoClient = new MongoClient(
-				new MongoClientURI("mongodb://swapadmin:projectblog@ds017584.mlab.com:17584/myproject"));
+		MongoClient mongoClient = new MongoClient(new MongoClientURI(System.getProperty("MONGODB_URL")));
 
 		dataStore = morphia.createDatastore(mongoClient, dbName);
 		morphia.mapPackage("mypage.domain");
@@ -51,11 +50,11 @@ public class GenericDAO {
 	}
 
 	public List<Article> getArticles(int offset, int limit, String tag) {
-		QueryResults<Article> article = dataStore.find(Article.class).filter("tags", tag)
-				.order("-modifiedDate").offset(offset).limit(limit);
+		QueryResults<Article> article = dataStore.find(Article.class).filter("tags", tag).order("-modifiedDate")
+				.offset(offset).limit(limit);
 		return article.asList();
 	}
-	
+
 	public List<Article> getSearchResults(int offset, int limit, String query) {
 		QueryResults<Article> article = dataStore.find(Article.class).search(query).offset(offset).limit(limit);
 		return article.asList();
@@ -68,6 +67,7 @@ public class GenericDAO {
 	public long getSearchResultsCount(String query) {
 		return dataStore.find(Article.class).search(query).countAll();
 	}
+
 	public Article getArticle(String id) {
 		Query<Article> article = dataStore.find(Article.class, "id", new ObjectId(id));
 		return article.get();

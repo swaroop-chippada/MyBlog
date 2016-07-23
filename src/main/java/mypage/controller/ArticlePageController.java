@@ -2,6 +2,8 @@ package mypage.controller;
 
 import java.util.Date;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
@@ -14,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import mypage.domain.Article;
 import mypage.service.HomePageService;
 import mypage.utils.WebConstants;
+import mypage.utils.WebUtils;
 
 @Controller
 public class ArticlePageController {
@@ -64,20 +67,11 @@ public class ArticlePageController {
 		return mav;
 	}
 
-	private void pagination(ModelAndView mav, int pageNo, long totalResults) {
-		int totalPages = (int) Math.ceil(totalResults / WebConstants.PAGE_SIZE);
-		if (!(pageNo < totalPages)) {
-			mav.addObject("next", true);
-		}
-		if (pageNo == 0) {
-			mav.addObject("previous", true);
-		}
-	}
-
-	@RequestMapping(value = "/*article.html", method = RequestMethod.GET)
-	public ModelAndView article(@RequestParam("articleId") String id) {
+	@RequestMapping(value = "/*/article*.html", method = RequestMethod.GET)
+	public ModelAndView article(HttpServletRequest request) {
+		String articleId = WebUtils.getArticleId(request.getRequestURI());
 		ModelAndView mav = new ModelAndView("article");
-		mav.addObject("article", homePageService.getArticle(id));
+		mav.addObject("article", homePageService.getArticle(articleId));
 		return mav;
 	}
 
@@ -93,10 +87,23 @@ public class ArticlePageController {
 		ModelAndView mav = new ModelAndView("index");
 		article.setCreatedDate(new Date());
 		article.setModifiedDate(new Date());
+		article.setFromFeed(false);
+		article.setStatus(1L);
+		article.setArticleUrl(WebUtils.convertToArticleUrl(article.getHeading()));
 		homePageService.createArticle(article);
 		mav.addObject("articleList", homePageService.getRecentArticles(0, WebConstants.PAGE_SIZE));
 		mav.addObject("articleCreated", true);
 		return mav;
+	}
+	
+	private void pagination(ModelAndView mav, int pageNo, long totalResults) {
+		int totalPages = (int) Math.ceil(totalResults / WebConstants.PAGE_SIZE);
+		if (!(pageNo < totalPages)) {
+			mav.addObject("next", true);
+		}
+		if (pageNo == 0) {
+			mav.addObject("previous", true);
+		}
 	}
 
 	public void setHomePageService(HomePageService homePageService) {

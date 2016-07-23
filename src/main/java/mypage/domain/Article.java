@@ -26,6 +26,9 @@ public class Article {
 	private String[] tags;
 	private Date createdDate;
 	private Date modifiedDate;
+	private String articleUrl;
+	private Long status;
+	private boolean fromFeed;
 
 	public String getId() {
 		return id;
@@ -104,5 +107,34 @@ public class Article {
 	public void setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
 	}
+
+	public String getArticleUrl() {
+		return articleUrl;
+	}
+
+	public void setArticleUrl(String articleUrl) {
+		this.articleUrl = articleUrl;
+	}
+	
+	public String getRelativeUrl(){
+		return this.articleUrl+"/article-"+this.id+".html";
+	}
+	
+	public Long getStatus() {
+		return status;
+	}
+
+	public void setStatus(Long status) {
+		this.status = status;
+	}
+
+	public boolean isFromFeed() {
+		return fromFeed;
+	}
+
+	public void setFromFeed(boolean fromFeed) {
+		this.fromFeed = fromFeed;
+	}
+
 
 }

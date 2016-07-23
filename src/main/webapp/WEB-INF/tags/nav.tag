@@ -13,15 +13,15 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="<c:if test="${active eq 'home'}">active</c:if>"><a href="Home">Home</a></li>
-        <li class="<c:if test="${active eq 'news'}">active</c:if>"><a href="tag?id=news">Tech News</a></li>
-        <li class="<c:if test="${active eq 'aboutme'}">active</c:if>"><a href="about">About Me</a></li>
+        <li class="<c:if test="${active eq 'home'}">active</c:if>"><a href="${pageContext.request.contextPath}/home">Home</a></li>
+        <li class="<c:if test="${active eq 'news'}">active</c:if>"><a href="${pageContext.request.contextPath}/tag?id=news">Tech News</a></li>
+        <li class="<c:if test="${active eq 'aboutme'}">active</c:if>"><a href="${pageContext.request.contextPath}/about">About Me</a></li>
       </ul>
       <!-- <ul class="nav navbar-nav navbar-right">
         <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
       </ul> -->
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="createArticle"><span class="glyphicon glyphicon-log-in"></span> Create Article</a></li>
+        <li><a href="${pageContext.request.contextPath}/createArticle"><span class="glyphicon glyphicon-log-in"></span> Create Article</a></li>
       </ul>
     </div>
   </div>

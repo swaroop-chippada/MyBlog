@@ -22,7 +22,7 @@
 		<div id="wrapper">
 			<div id="columns">
 				<c:forEach var="article" items="${articleList}">
-					<a href="article.html?articleId=${article.id}">
+					<a href="${article.relativeUrl}">
 
 						<div class="pin">
 							<c:choose>

@@ -19,11 +19,14 @@
 			<div class="12u">
 				<header>
 					<h3>${article.heading}</h3>
-					<div>By:
-					<span class="author">${article.userId}</span>
+					<div>
+						By: <span class="author">${article.userId}</span>
 					</div>
 					<hr>
 				</header>
+				<c:if test="${not empty article.imageUrl}">
+					<div><img src="${article.imageUrl}" /></div>
+				</c:if>
 				<p>${article.content}</p>
 			</div>
 		</div>

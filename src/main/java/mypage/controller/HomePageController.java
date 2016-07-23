@@ -26,7 +26,7 @@ public class HomePageController {
 		return mav;
 	}
 	
-	@RequestMapping(value="/Home", method = RequestMethod.GET)
+	@RequestMapping(value="/home", method = RequestMethod.GET)
 	public ModelAndView homePage(){
 		return indexPage();
 	}

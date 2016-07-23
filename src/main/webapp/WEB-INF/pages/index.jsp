@@ -88,7 +88,7 @@
 					<div class="panel-body">
 						<div class="list-group">
 							<c:forEach var="article" items="${articleList}">
-								<a href="article.html?articleId=${article.id}"
+								<a href="${article.relativeUrl}"
 									class="list-group-item"> <c:forEach items="${article.tags}"
 										var="tag">
 										<span class="badge ${tag}">${tag}</span>
