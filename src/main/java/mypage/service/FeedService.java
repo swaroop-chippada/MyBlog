@@ -21,6 +21,7 @@ import com.sun.syndication.io.XmlReader;
 
 import mypage.domain.Article;
 import mypage.utils.WebConstants;
+import mypage.utils.WebUtils;
 
 @Service
 public class FeedService {
@@ -70,6 +71,7 @@ public class FeedService {
 			Element element = (Element) list.get(0);
 			article.setImageUrl(element != null ? element.getAttributeValue("url") : "");
 		}
+		article.setArticleUrl(WebUtils.convertToArticleUrl(article.getHeading()));
 		article.setPublicationDate(syndEntry.getPublishedDate());
 		article.setCreatedDate(new Date());
 		article.setModifiedDate(new Date());
