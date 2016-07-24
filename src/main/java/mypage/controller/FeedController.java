@@ -24,8 +24,9 @@ public class FeedController {
 
 	@RequestMapping(value = "/ingest", method = RequestMethod.POST)
 	public @ResponseBody String ingestFeed(@RequestParam(value = "url", required = true) String url,
-			@RequestParam(value = "feedType", required = true) String feedType) {
-		feedService.ingestFeed(url, feedType);
+			@RequestParam(value = "feedType", required = true) String feedType,
+			@RequestParam(value = "feedProviderName", required = true) String feedProviderName) {
+		feedService.ingestFeed(url, feedType, feedProviderName);
 		return "success";
 	}
 

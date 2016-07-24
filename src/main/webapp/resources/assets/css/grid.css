@@ -1,5 +1,5 @@
 body {
-	background: url(http://subtlepatterns.com/patterns/scribble_light.png);
+	    background: url(http://subtlepatterns.com/patterns/scribble_light.png);
 }
 
 #wrapper {
@@ -48,7 +48,7 @@ body {
 }
 
 .pin p {
-	    color: #555;
+	color: #555;
     margin: 0;
     font-size: 18px;
     font-weight: lighter;
@@ -58,7 +58,7 @@ body {
 	#columns {
 		-webkit-column-count: 4;
 		-moz-column-count: 4;
-		column-count: 4;
+		column-count: 2;
 	}
 }
 
@@ -70,7 +70,7 @@ body {
 	}
 }
 
-#columns:hover .pin:not (:hover ) {
+#columns:hover .pin:not(:hover) {
 	opacity: 0.4;
 }
 

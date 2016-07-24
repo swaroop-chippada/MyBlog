@@ -53,6 +53,10 @@ public class ArticleDAO {
 		return article.get();
 	}
 	
+	public Long getArticleUsingFeedLink(String feedLink) {
+		return dataStore.find(Article.class, "feedLink", feedLink).countAll();
+	}
+	
 	public void setDataStoreTemplate(DataStoreTemplate dataStoreTemplate) {
 		this.dataStoreTemplate = dataStoreTemplate;
 		dataStore = dataStoreTemplate.getDataStore();

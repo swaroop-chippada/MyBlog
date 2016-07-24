@@ -41,6 +41,10 @@ public class ArticlePageService {
 	public Article getArticle(String id) {
 		return articleDAO.getArticle(id);
 	}
+	
+	public Long getArticleUsingFeedLink(String feedLink) {
+		return articleDAO.getArticleUsingFeedLink(feedLink);
+	}
 
 	public void setArticleDAO(ArticleDAO articleDAO) {
 		this.articleDAO = articleDAO;

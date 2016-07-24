@@ -21,6 +21,11 @@
 			<div class="col-md-12">
 				<form>
 					<div class="form-group">
+						<label for="heading">Feed Provider Name</label> <input type="text"
+							class="form-control" id="feedProviderName"
+							placeholder="Feed provider Name" />
+					</div>
+					<div class="form-group">
 						<label for="heading">Feed URL</label> <input type="text"
 							class="form-control" id="feedUrl"
 							placeholder="Place the feed url here...." />
@@ -47,7 +52,8 @@
 		function onSubmit() {
 			$.post("ingest", {
 				url : $("#feedUrl").val(),
-				feedType: $( "input:checked" ).val()
+				feedType : $("input:checked").val(),
+				feedProviderName : $("#feedProviderName").val()
 			}).done(function(data) {
 				alert("Data Loaded: " + data);
 			});

@@ -28,7 +28,7 @@ public class FeedService {
 	@Autowired
 	private ArticlePageService articlePageService;
 
-	public void ingestFeed(String feedUrl, String feedType) {
+	public void ingestFeed(String feedUrl, String feedType, String feedProviderName) {
 		URL url = null;
 		try {
 			url = new URL(feedUrl);
@@ -42,7 +42,7 @@ public class FeedService {
 			System.out.println(feed);
 			for (Object object : feed.getEntries()) {
 				if (WebConstants.FEED_TYPE_RSS.equalsIgnoreCase(feedType) && object instanceof SyndEntry) {
-					insertFeed((SyndEntry) object);
+					insertFeed((SyndEntry) object, feedProviderName);
 				}
 			}
 		} catch (IllegalArgumentException | FeedException | IOException e) {
@@ -51,8 +51,9 @@ public class FeedService {
 		}
 	}
 
-	private void insertFeed(SyndEntry syndEntry) {
+	private void insertFeed(SyndEntry syndEntry, String feedProviderName) {
 		Article article = new Article();
+		article.setFeedLink(syndEntry.getLink());
 		article.setHeading(syndEntry.getTitle());
 		article.setContent(syndEntry.getDescription().getValue());
 		String[] tags = new String[syndEntry.getCategories().size() + 1];
@@ -74,8 +75,10 @@ public class FeedService {
 		article.setModifiedDate(new Date());
 		article.setStatus(1L);
 		article.setFromFeed(true);
-		// article.setFeedProviderName(syndEntry.getSource().);
-		articlePageService.createArticle(article);
+		article.setFeedProviderName(feedProviderName);
+		if (articlePageService.getArticleUsingFeedLink(article.getFeedLink()) == 0) {
+			articlePageService.createArticle(article);
+		}
 
 	}
 

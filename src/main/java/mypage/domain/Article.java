@@ -32,6 +32,7 @@ public class Article {
 	private Long status;
 	private boolean fromFeed;
 	private String feedProviderName;
+	private String feedLink;
 	
 
 	public String getId() {
@@ -154,6 +155,14 @@ public class Article {
 
 	public void setPublicationDate(Date publicationDate) {
 		this.publicationDate = publicationDate;
+	}
+
+	public String getFeedLink() {
+		return feedLink;
+	}
+
+	public void setFeedLink(String feedLink) {
+		this.feedLink = feedLink;
 	}
 	
 }
