@@ -20,6 +20,7 @@ import com.sun.syndication.io.SyndFeedInput;
 import com.sun.syndication.io.XmlReader;
 
 import mypage.domain.Article;
+import mypage.utils.WebConstants;
 
 @Service
 public class FeedService {
@@ -27,7 +28,7 @@ public class FeedService {
 	@Autowired
 	private ArticlePageService articlePageService;
 
-	public void ingestFeed(String feedUrl) {
+	public void ingestFeed(String feedUrl, String feedType) {
 		URL url = null;
 		try {
 			url = new URL(feedUrl);
@@ -39,8 +40,10 @@ public class FeedService {
 		try {
 			SyndFeed feed = input.build(new XmlReader(url));
 			System.out.println(feed);
-			for (Iterator iterator = feed.getEntries().iterator(); iterator.hasNext();) {
-				insertFeed((SyndEntry) iterator.next());
+			for (Object object : feed.getEntries()) {
+				if (WebConstants.FEED_TYPE_RSS.equalsIgnoreCase(feedType) && object instanceof SyndEntry) {
+					insertFeed((SyndEntry) object);
+				}
 			}
 		} catch (IllegalArgumentException | FeedException | IOException e) {
 			// TODO Auto-generated catch block

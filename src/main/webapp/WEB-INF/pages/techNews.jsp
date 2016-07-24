@@ -17,6 +17,9 @@
 
 	<!-- Nav -->
 	<custom:nav active="${tag}"></custom:nav>
+	
+	<!-- Search component -->
+	<custom:search></custom:search>
 
 	<div class="container-fluid page-layout-news">
 		<div id="wrapper">

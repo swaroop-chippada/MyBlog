@@ -15,35 +15,13 @@
 
 	<!-- Nav -->
 	<custom:nav active="home"></custom:nav>
+	
+	<!-- Search component -->
+	<custom:search></custom:search>
 
-	<div class="jumbotron">
-		<div class="container-fluid">
-			<!-- <h2>Welcome !</h2>
-			<p>Main purpose of this application is to help people learn
-				things about web technologies. I created this application to share
-				few concepts and methodologies which im quite familiar about.</p> -->
-
-			<form method="get" action="search">
-				<div class="form-group form-padding40">
-					<div class="col-sm-3 text-right" style="font-size:21px">
-						<label>Search Articles</label>
-					</div>
-
-					<div class="col-sm-3">
-						<input id="query" placeholder="Search" name="query"
-							class="form-control" />
-					</div>
-					<div class="col-sm-3">
-						<input type="submit" value="Search" class="btn btn-success" />
-					</div>
-
-				</div>
-				<form>
-		</div>
-	</div>
 	<div class="container-fluid page-layout">
 		<div class="row">
-			<div class="col-xs-4">
+			<div class="col-md-4 col-sm-4 col-xs-12">
 				<h2>JAVA</h2>
 				<p>The section will help you understand the basics of JAVA, so
 					that you can create your own web pages or website using JAVA.</p>
@@ -52,7 +30,7 @@
 						articles</a>
 				</p>
 			</div>
-			<div class="col-xs-4">
+			<div class="col-md-4 col-sm-4 col-xs-12">
 				<h2>Spring</h2>
 				<p>The section will help you understand the basics of Spring, so
 					that you can create high performing, easily testable and reusable
@@ -62,7 +40,7 @@
 						Spring articles</a>
 				</p>
 			</div>
-			<div class="col-xs-4">
+			<div class="col-md-4 col-sm-4 col-xs-12">
 				<h2>Hibernate</h2>
 				<p>The section will help you understand the basics of Hibernate.
 					What is ORM and also some of the main features of Hibernate.</p>

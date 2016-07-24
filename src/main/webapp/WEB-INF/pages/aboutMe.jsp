@@ -31,11 +31,11 @@
       <p><a href="#">Link</a></p> 
 			</div> -->
 			<div class="col-sm-12">
-				<div class="col-sm-4">
+				<div class="col-sm-4 col-xs-12">
 					<img src="<c:url value="/resources/images/Swap-Profile.JPG"/>"
 						class="img-circle" alt="swaroop chippada" width="304" height="236" />
 				</div>
-				<div class="col-sm-8 text-left">
+				<div class="col-sm-8 col-xs-12 text-left">
 					<header>
 						<h1>
 							Hi. I'm <strong>Swaroop Chippada</strong>.
@@ -56,41 +56,41 @@
 				</div>
 			</div>
 			<div class="col-sm-12">
-				<div class="container col-sm-12 text-left">
+				<div class="container col-sm-12">
 					<header class="spacer">
 						<h4>Following are some technologies and frameworks which i have worked on.</h4>
 					</header>
-					<div class="col-sm-2">
+					<div class="col-sm-2 col-xs-12">
 						<img src="<c:url value="/resources/images/javalogo.png"/>"
 							alt="swaroop chippada" width="150" height="100" />
 					</div>
-					<div class="col-sm-2">
+					<div class="col-sm-2 col-xs-12">
 						<img src="<c:url value="/resources/images/spring1.png"/>"
 							alt="swaroop chippada" width="150" height="100" />
 					</div>
-					<div class="col-sm-2">
+					<div class="col-sm-2 col-xs-12">
 						<img src="<c:url value="/resources/images/Hibernate_logo_a.png"/>"
 							alt="swaroop chippada" width="150" height="100" />
 					</div>
-					<div class="col-sm-2">
+					<div class="col-sm-2 col-xs-12">
 						<img src="<c:url value="/resources/images/solr1.png"/>"
 							alt="swaroop chippada" width="150" height="100" />
 					</div>
-					<div class="col-sm-2">
+					<div class="col-sm-2 col-xs-12">
 						<img src="<c:url value="/resources/images/oracle-logo.png"/>"
 							alt="swaroop chippada" width="150" height="100" />
 					</div>
-					<div class="col-sm-2">
+					<div class="col-sm-2 col-xs-12">
 						<img src="<c:url value="/resources/images/MongoDB-Logo.svg.png"/>"
 							alt="swaroop chippada" width="150" height="100" />
 					</div>
 				</div>
 				<div class="container col-sm-12">
-					<div class="col-sm-2">
+					<div class="col-sm-2 col-xs-12">
 						<img src="<c:url value="/resources/images/jQuery.gif"/>"
 							alt="swaroop chippada" width="150" height="100" />
 					</div>
-					<div class="col-sm-2">
+					<div class="col-sm-2 col-xs-12">
 						<img src="<c:url value="/resources/images/bootstrap.gif"/>"
 							alt="swaroop chippada" width="150" height="100" />
 					</div>
@@ -105,11 +105,11 @@
 					action="postQuestion.do">
 
 					<div class="form-group form-padding40">
-						<div class="col-sm-6">
+						<div class="col-sm-6 col-xs-12">
 							<form:input path="userName" id="name" placeholder="Name"
 								class="form-control" />
 						</div>
-						<div class="col-sm-6">
+						<div class="col-sm-6 col-xs-12">
 							<form:input path="email" id="email" placeholder="Email"
 								class="form-control" />
 						</div>

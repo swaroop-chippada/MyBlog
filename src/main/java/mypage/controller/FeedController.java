@@ -10,7 +10,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import mypage.service.FeedService;
 
-
 @Controller
 public class FeedController {
 
@@ -22,16 +21,16 @@ public class FeedController {
 		ModelAndView mav = new ModelAndView("ingestFeeds");
 		return mav;
 	}
-	
-	@RequestMapping(value="/ingest", method = RequestMethod.POST)
-	public @ResponseBody String ingestFeed(@RequestParam(value = "url", required = true) String url){
-		feedService.ingestFeed(url);
+
+	@RequestMapping(value = "/ingest", method = RequestMethod.POST)
+	public @ResponseBody String ingestFeed(@RequestParam(value = "url", required = true) String url,
+			@RequestParam(value = "feedType", required = true) String feedType) {
+		feedService.ingestFeed(url, feedType);
 		return "success";
 	}
 
 	public void setFeedService(FeedService feedService) {
 		this.feedService = feedService;
 	}
-
 
 }

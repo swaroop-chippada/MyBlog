@@ -46,7 +46,8 @@
 	<script type="text/javascript">
 		function onSubmit() {
 			$.post("ingest", {
-				url : $("#feedUrl").val()
+				url : $("#feedUrl").val(),
+				feedType: $( "input:checked" ).val()
 			}).done(function(data) {
 				alert("Data Loaded: " + data);
 			});
