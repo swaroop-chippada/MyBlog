@@ -4,10 +4,10 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.jdom.Element;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,10 +76,32 @@ public class FeedService {
 		article.setStatus(1L);
 		article.setFromFeed(true);
 		article.setFeedProviderName(feedProviderName);
+		updateDescription(article);
 		if (articlePageService.getArticleUsingFeedLink(article.getFeedLink()) == 0) {
 			articlePageService.createArticle(article);
 		}
 
+	}
+
+	/**
+	 * Update the feed link to absolute url
+	 * 
+	 * @param article
+	 */
+	private void updateDescription(Article article) {
+		Pattern p = Pattern.compile("href=\"(.*?)\"");
+		Matcher m = p.matcher(article.getContent());
+		String url = null;
+		while (m.find()) {
+			url = m.group(1);
+			if (url.indexOf("#") > 0) {
+				url = url.substring(0, url.indexOf("#"));
+			}
+			if (article.getFeedLink().contains(url)) {
+				article.setContent(article.getContent().replaceAll(url, article.getFeedLink()));
+				break;
+			}
+		}
 	}
 
 	public void setArticlePageService(ArticlePageService articlePageService) {

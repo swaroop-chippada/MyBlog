@@ -44,17 +44,25 @@
 						</br> <input type="button" class="btn btn-success" value="Ingest"
 							onclick="onSubmit();" />
 					</div>
+					<div class="form-group hide" id="loading">
+						</br>
+						<img alt="" src=" <c:url value="/resources/images/loading.gif"/>" style="width:10%">
+					</div>
+
 				</form>
 			</div>
 		</div>
 	</div>
 	<script type="text/javascript">
 		function onSubmit() {
+			$("#loading").removeClass("hide");
+			$("#loading").show();
 			$.post("ingest", {
 				url : $("#feedUrl").val(),
 				feedType : $("input:checked").val(),
 				feedProviderName : $("#feedProviderName").val()
 			}).done(function(data) {
+				$("#loading").hide();
 				alert("Data Loaded: " + data);
 			});
 		}

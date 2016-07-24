@@ -2,7 +2,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Swaroop Chippada</title>
+<title>${article.heading}</title>
 <meta charset="utf-8" />
 <meta name="google-site-verification"
 	content="w0DVCHIVnjrXlo_0iBjpBDDBavPLscfNQezp6kzbF00" />
@@ -20,7 +20,7 @@
 				<header>
 					<h3>${article.heading}</h3>
 					<div>
-						By: <span class="author">${article.userId}</span>
+						By: <span class="author">${article.userId}</span> | Published on: <span class="author">${article.publicationDate}</span>
 					</div>
 					<hr>
 				</header>

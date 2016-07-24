@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Swaroop Chippada HomePage</title>
+<title>Swaroop Chippada</title>
 <meta charset="utf-8">
 <meta name="google-site-verification"
 	content="w0DVCHIVnjrXlo_0iBjpBDDBavPLscfNQezp6kzbF00" />
