@@ -2,12 +2,13 @@ package mypage.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import mypage.domain.FeedDetails;
 import mypage.service.FeedService;
 
 @Controller
@@ -22,11 +23,9 @@ public class FeedController {
 		return mav;
 	}
 
-	@RequestMapping(value = "/ingest", method = RequestMethod.POST)
-	public @ResponseBody String ingestFeed(@RequestParam(value = "url", required = true) String url,
-			@RequestParam(value = "feedType", required = true) String feedType,
-			@RequestParam(value = "feedProviderName", required = true) String feedProviderName) {
-		feedService.ingestFeed(url, feedType, feedProviderName);
+	@RequestMapping(value = "/ingest", method = RequestMethod.POST, headers = "Accept=application/json")
+	public @ResponseBody String ingestFeed(@RequestBody FeedDetails feedDetails) {
+		feedService.ingestFeed(feedDetails);
 		return "success";
 	}
 

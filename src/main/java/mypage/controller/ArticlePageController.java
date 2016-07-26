@@ -90,7 +90,6 @@ public class ArticlePageController {
 			article.setCreatedDate(new Date());
 			article.setModifiedDate(new Date());
 			article.setPublicationDate(new Date());
-			article.setFromFeed(false);
 			article.setStatus(1L);
 			article.setArticleUrl(WebUtils.convertToArticleUrl(article.getHeading()));
 			articlePageService.createArticle(article);

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -12,6 +13,7 @@ import java.util.regex.Pattern;
 import org.jdom.Element;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import com.sun.syndication.feed.synd.SyndEntry;
 import com.sun.syndication.feed.synd.SyndFeed;
@@ -20,6 +22,7 @@ import com.sun.syndication.io.SyndFeedInput;
 import com.sun.syndication.io.XmlReader;
 
 import mypage.domain.Article;
+import mypage.domain.FeedDetails;
 import mypage.utils.WebConstants;
 import mypage.utils.WebUtils;
 
@@ -29,10 +32,10 @@ public class FeedService {
 	@Autowired
 	private ArticlePageService articlePageService;
 
-	public void ingestFeed(String feedUrl, String feedType, String feedProviderName) {
+	public void ingestFeed(FeedDetails feedDetails) {
 		URL url = null;
 		try {
-			url = new URL(feedUrl);
+			url = new URL(feedDetails.getFeedUrl());
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -40,10 +43,10 @@ public class FeedService {
 		SyndFeedInput input = new SyndFeedInput();
 		try {
 			SyndFeed feed = input.build(new XmlReader(url));
-			System.out.println(feed);
 			for (Object object : feed.getEntries()) {
-				if (WebConstants.FEED_TYPE_RSS.equalsIgnoreCase(feedType) && object instanceof SyndEntry) {
-					insertFeed((SyndEntry) object, feedProviderName);
+				if (WebConstants.FEED_TYPE_RSS.equalsIgnoreCase(feedDetails.getFeedType())
+						&& object instanceof SyndEntry) {
+					insertFeed((SyndEntry) object, feedDetails);
 				}
 			}
 		} catch (IllegalArgumentException | FeedException | IOException e) {
@@ -52,19 +55,23 @@ public class FeedService {
 		}
 	}
 
-	private void insertFeed(SyndEntry syndEntry, String feedProviderName) {
+	private void insertFeed(SyndEntry syndEntry, FeedDetails feedDetails) {
 		Article article = new Article();
-		article.setFeedLink(syndEntry.getLink());
+
 		article.setHeading(syndEntry.getTitle());
 		article.setContent(syndEntry.getDescription().getValue());
-		String[] tags = new String[syndEntry.getCategories().size() + 1];
-		tags[0] = "news";
-		int count = 1;
-		for (Object cat : syndEntry.getCategories()) {
-			tags[count] = cat.toString();
-			count++;
+
+		List<String> listTags = new ArrayList<String>();
+		for (String tag : feedDetails.getFeedTags().split(",")) {
+			if (!StringUtils.isEmpty(tag))
+				listTags.add(tag);
 		}
-		article.setTags(tags);
+		for (Object cat : syndEntry.getCategories()) {
+			listTags.add(cat.toString());
+		}
+		String[] myArray = new String[listTags.size()];
+		listTags.toArray(myArray);		
+		article.setTags(myArray);
 		article.setUserId(syndEntry.getAuthor());
 		List list = (ArrayList) syndEntry.getForeignMarkup();
 		if (!list.isEmpty()) {
@@ -76,10 +83,16 @@ public class FeedService {
 		article.setCreatedDate(new Date());
 		article.setModifiedDate(new Date());
 		article.setStatus(1L);
-		article.setFromFeed(true);
-		article.setFeedProviderName(feedProviderName);
-		updateDescription(article);
-		if (articlePageService.getArticleUsingFeedLink(article.getFeedLink()) == 0) {
+
+		// Update Feed Details
+		feedDetails.setFeedLink(syndEntry.getLink());
+		article.setFeedDetails(feedDetails);
+
+		// Update Description and inline image width
+		updateDescription(article, syndEntry.getLink());
+
+		// to avoid duplicate content, check if article exist using feedlink
+		if (articlePageService.getArticleUsingFeedLink(feedDetails.getFeedLink()) == 0) {
 			articlePageService.createArticle(article);
 		}
 
@@ -90,7 +103,7 @@ public class FeedService {
 	 * 
 	 * @param article
 	 */
-	private void updateDescription(Article article) {
+	private void updateDescription(Article article, String feedLink) {
 		Pattern p = Pattern.compile("href=\"(.*?)\"");
 		Matcher m = p.matcher(article.getContent());
 		String url = null;
@@ -99,11 +112,13 @@ public class FeedService {
 			if (url.indexOf("#") > 0) {
 				url = url.substring(0, url.indexOf("#"));
 			}
-			if (article.getFeedLink().contains(url)) {
-				article.setContent(article.getContent().replaceAll(url, article.getFeedLink()));
+			if (feedLink.contains(url)) {
+				article.setContent(article.getContent().replaceAll(url, feedLink));
 				break;
 			}
 		}
+		// update image width to 100%
+		article.setContent(article.getContent().replaceAll("<img", "<img width=\"100%\""));
 	}
 
 	public void setArticlePageService(ArticlePageService articlePageService) {

@@ -27,7 +27,7 @@ public class DataStoreTemplate {
 
 		dataStore = morphia.createDatastore(mongoClient, dbName);
 		morphia.mapPackage("mypage.domain");
-
+		dataStore.ensureIndexes();
 	}
 
 	public Datastore getDataStore() {

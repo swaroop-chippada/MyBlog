@@ -25,7 +25,7 @@
 					<hr>
 				</header>
 				<c:if test="${not empty article.imageUrl}">
-					<div><img src="${article.imageUrl}" /></div>
+					<div><img src="${article.imageUrl}" width="100%"/></div>
 				</c:if>
 				<p>${article.content}</p>
 			</div>

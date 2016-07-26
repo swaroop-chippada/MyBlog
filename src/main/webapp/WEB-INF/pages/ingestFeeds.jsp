@@ -9,6 +9,13 @@
 <%@ include file="../tags/css.tag"%>
 <%@ include file="../tags/js.tag"%>
 <title>Ingest feeds</title>
+<link href="<c:url value="/resources/assets/css/tagit.ui-zendesk.css"/>"
+	rel="stylesheet" type="text/css">
+<link href="<c:url value="/resources/assets/css/jquery.tagit.css"/>"
+	rel="stylesheet" type="text/css">
+
+<script src="<c:url value="/resources/assets/js/tag-it.min.js"/>"
+	type="text/javascript" charset="utf-8"></script>
 </head>
 <body>
 
@@ -31,6 +38,11 @@
 							placeholder="Place the feed url here...." />
 					</div>
 
+					<div class="form-group">
+						<label for="heading">Feed Tags</label> <input class="form-control"
+							id="feedTags" />
+					</div>
+
 					<div class="btn-group" data-toggle="buttons">
 						<label for="heading">Feed Type</label> </br> <label
 							class="btn btn-primary active"> <input type="radio"
@@ -45,26 +57,46 @@
 							onclick="onSubmit();" />
 					</div>
 					<div class="form-group hide" id="loading">
-						</br>
-						<img alt="" src=" <c:url value="/resources/images/loading.gif"/>" style="width:10%">
+						</br> <img alt="" src=" <c:url value="/resources/images/loading.gif"/>"
+							style="width: 10%">
 					</div>
 
 				</form>
 			</div>
 		</div>
 	</div>
+
 	<script type="text/javascript">
+		$(document).ready(function() {
+			$('#feedTags').tagit();
+		});
 		function onSubmit() {
 			$("#loading").removeClass("hide");
 			$("#loading").show();
-			$.post("ingest", {
-				url : $("#feedUrl").val(),
-				feedType : $("input:checked").val(),
-				feedProviderName : $("#feedProviderName").val()
-			}).done(function(data) {
-				$("#loading").hide();
-				alert("Data Loaded: " + data);
-			});
+			var feed = {}
+			feed["feedUrl"] = $("#feedUrl").val();
+			feed["feedType"] = $("input:checked").val();
+			feed["feedProviderName"] = $("#feedProviderName").val();
+			feed["feedTags"] = $("#feedTags").val();
+
+			$.ajax({
+	             type: "POST",
+	             contentType: "application/json",
+	             url: "ingest",
+	             data: JSON.stringify(feed),
+	             dataType: 'json',
+	             timeout: 600000,
+	             success: function (data) {
+	            	 $("#loading").hide();
+	 				 alert("Feed uploaded successfully");
+	             },
+	             error: function (e) {
+	            	$("#loading").hide();
+	 				alert("failed to upload feed");
+	             }
+		});
+			
+			
 		}
 	</script>
 

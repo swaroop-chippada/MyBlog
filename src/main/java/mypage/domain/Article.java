@@ -2,7 +2,7 @@ package mypage.domain;
 
 import java.util.Date;
 
-import org.bson.types.ObjectId;
+import org.mongodb.morphia.annotations.Embedded;
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Field;
 import org.mongodb.morphia.annotations.Id;
@@ -13,7 +13,7 @@ import org.mongodb.morphia.utils.IndexType;
 import org.springframework.util.StringUtils;
 
 @Entity("Article")
-@Indexes(@Index(fields = @Field(value = "content", type = IndexType.TEXT)))
+@Indexes(@Index(fields = @Field(value = "content", type = IndexType.TEXT) ))
 public class Article {
 
 	@Id
@@ -30,10 +30,17 @@ public class Article {
 	private Date publicationDate;
 	private String articleUrl;
 	private Long status;
-	private boolean fromFeed;
-	private String feedProviderName;
-	private String feedLink;
-	
+
+	@Embedded
+	private FeedDetails feedDetails;
+
+	public FeedDetails getFeedDetails() {
+		return feedDetails;
+	}
+
+	public void setFeedDetails(FeedDetails feedDetails) {
+		this.feedDetails = feedDetails;
+	}
 
 	public String getId() {
 		return id;
@@ -120,33 +127,17 @@ public class Article {
 	public void setArticleUrl(String articleUrl) {
 		this.articleUrl = articleUrl;
 	}
-	
-	public String getRelativeUrl(){
-		return this.articleUrl+"/article-"+this.id+".html";
+
+	public String getRelativeUrl() {
+		return this.articleUrl + "/article-" + this.id + ".html";
 	}
-	
+
 	public Long getStatus() {
 		return status;
 	}
 
 	public void setStatus(Long status) {
 		this.status = status;
-	}
-
-	public boolean isFromFeed() {
-		return fromFeed;
-	}
-
-	public void setFromFeed(boolean fromFeed) {
-		this.fromFeed = fromFeed;
-	}
-
-	public String getFeedProviderName() {
-		return feedProviderName;
-	}
-
-	public void setFeedProviderName(String feedProviderName) {
-		this.feedProviderName = feedProviderName;
 	}
 
 	public Date getPublicationDate() {
@@ -156,13 +147,6 @@ public class Article {
 	public void setPublicationDate(Date publicationDate) {
 		this.publicationDate = publicationDate;
 	}
-
-	public String getFeedLink() {
-		return feedLink;
-	}
-
-	public void setFeedLink(String feedLink) {
-		this.feedLink = feedLink;
-	}
 	
+
 }

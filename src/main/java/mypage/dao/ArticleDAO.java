@@ -54,7 +54,7 @@ public class ArticleDAO {
 	}
 	
 	public Long getArticleUsingFeedLink(String feedLink) {
-		return dataStore.find(Article.class, "feedLink", feedLink).countAll();
+		return dataStore.find(Article.class, "feedDetails.feedLink", feedLink).countAll();
 	}
 	
 	public void setDataStoreTemplate(DataStoreTemplate dataStoreTemplate) {
