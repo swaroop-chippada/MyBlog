@@ -17,7 +17,7 @@
 					href="${pageContext.request.contextPath}/home">Home</a></li>
 				<li class="<c:if test="${active eq 'news'}">active</c:if>"><a
 					href="${pageContext.request.contextPath}/tag?id=news">Tech News</a></li>
-				<li class="<c:if test="${active eq 'news'}">active</c:if>"><a
+				<li class="<c:if test="${active eq 'gadgets'}">active</c:if>"><a
 					href="${pageContext.request.contextPath}/tag?id=gadgets">Gadget 360</a></li>
 				<li class="<c:if test="${active eq 'aboutme'}">active</c:if>"><a
 					href="${pageContext.request.contextPath}/about">About Me</a></li>
