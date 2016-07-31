@@ -79,22 +79,24 @@
 			feed["feedProviderName"] = $("#feedProviderName").val();
 			feed["feedTags"] = $("#feedTags").val();
 
-			$.ajax({
-	             type: "POST",
+			var request = $.ajax({
+				type: "POST",
 	             contentType: "application/json",
 	             url: "ingest",
 	             data: JSON.stringify(feed),
 	             dataType: 'json',
 	             timeout: 600000,
-	             success: function (data) {
-	            	 $("#loading").hide();
+				});
+				 
+				request.done(function( msg ) {
+					 $("#loading").hide();
 	 				 alert("Feed uploaded successfully");
-	             },
-	             error: function (e) {
-	            	$("#loading").hide();
-	 				alert("failed to upload feed");
-	             }
-		});
+				});
+				 
+				request.fail(function( jqXHR, textStatus ) {
+					$("#loading").hide();
+	 				alert("failed to upload feed"+textStatus);
+				});
 			
 			
 		}

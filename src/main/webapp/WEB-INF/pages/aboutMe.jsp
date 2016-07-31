@@ -33,7 +33,7 @@
 			<div class="col-sm-12">
 				<div class="col-sm-4 col-xs-12">
 					<img src="<c:url value="/resources/images/Swap-Profile.JPG"/>"
-						class="img-circle" alt="swaroop chippada" width="304" height="236" />
+						class="img-circle" alt="swaroop chippada" height="250" />
 				</div>
 				<div class="col-sm-8 col-xs-12 text-left">
 					<header>

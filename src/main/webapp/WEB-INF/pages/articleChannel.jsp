@@ -7,9 +7,9 @@
 <meta name="google-site-verification"
 	content="w0DVCHIVnjrXlo_0iBjpBDDBavPLscfNQezp6kzbF00" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
-<%@ include file="../tags/css.tag"%>
 <%@ include file="../tags/js.tag"%>
+<%@ include file="../tags/css.tag"%>
+
 </head>
 <body>
 

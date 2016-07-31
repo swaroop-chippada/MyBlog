@@ -21,31 +21,27 @@
 
 	<div class="container-fluid page-layout">
 		<div class="row">
-			<div class="col-md-4 col-sm-4 col-xs-12">
-				<h2>JAVA</h2>
-				<p>The section will help you understand the basics of JAVA, so
-					that you can create your own web pages or website using JAVA.</p>
+			<div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+				<h2>Java</h2>
+				<p>Click below to check articles on Java</p>
 				<p>
-					<a href="tag?id=java" class="btn btn-primary">Click to see JAVA
-						articles</a>
+					<a href="tag?id=java" class="btn btn-primary"> Java
+						</a>
 				</p>
 			</div>
-			<div class="col-md-4 col-sm-4 col-xs-12">
+			<div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
 				<h2>Spring</h2>
-				<p>The section will help you understand the basics of Spring, so
-					that you can create high performing, easily testable and reusable
-					code.</p>
+				<p>Click below to check articles on Spring</p>
 				<p>
-					<a href="tag?id=spring" class="btn btn-primary">Click to see
-						Spring articles</a>
+					<a href="tag?id=spring" class="btn btn-primary">
+						Spring </a>
 				</p>
 			</div>
-			<div class="col-md-4 col-sm-4 col-xs-12">
+			<div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
 				<h2>Hibernate</h2>
-				<p>The section will help you understand the basics of Hibernate.
-					What is ORM and also some of the main features of Hibernate.</p>
+				<p>Click below to check articles on Hibernate</p>
 				<p>
-					<a href="tag?id=hibernate" class="btn btn-primary">Click to see
+					<a href="tag?id=hibernate" class="btn btn-primary">
 						Hibernate articles</a>
 				</p>
 			</div>

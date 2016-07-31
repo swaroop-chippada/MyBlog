@@ -28,9 +28,9 @@ public class ArticlePageController {
 	public ModelAndView tagSearch(@RequestParam(value = "id", required = true) String tag,
 			@RequestParam(value = "offset", required = false) String offset) {
 		String viewName = "articleChannel";
-		if ("news".equalsIgnoreCase(tag)) {
+//		if ("news".equalsIgnoreCase(tag)) {
 			viewName = "techNews";
-		}
+//		}
 
 		ModelAndView mav = new ModelAndView(viewName);
 		int pageNo;
@@ -115,8 +115,7 @@ public class ArticlePageController {
 	}
 
 	private void pagination(ModelAndView mav, int pageNo, long totalResults) {
-		int totalPages = (int) Math.ceil(totalResults / WebConstants.PAGE_SIZE);
-		if (!(pageNo < totalPages)) {
+		if (!((pageNo+1)*WebConstants.PAGE_SIZE < totalResults)) {
 			mav.addObject("next", true);
 		}
 		if (pageNo == 0) {
