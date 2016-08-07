@@ -1,0 +1,76 @@
+<div ng-controller="HomeController">
+	<div class="row column">
+		<h4 style="margin: 0;" class="text-center">LATEST STORIES</h4>
+	</div>
+
+	<hr>
+
+	<div class="row">
+		<div class="large-8 columns" style="border-right: 1px solid #E3E5E8;">
+
+			<article>
+
+
+				<div class="row" ng-repeat="article in articles">
+					<!-- <div class="large-6 columns">
+						<p>
+							<img ng-src="{{article.imageUrl}}" alt="image for article">
+						</p>
+					</div> -->
+					<div class="large-12 columns">
+						<h5>
+							<a href="#/articlePage/{{article.id}}">{{article.heading}}</a>
+						</h5>
+						<p>
+							<span><i class="fi-torso"> By {{article.userId}}
+									&nbsp;&nbsp;</i></span> <span><i class="fi-calendar">
+									{{article.publicationDate | date:'dd/MM/yy'}} &nbsp;&nbsp;</i></span>
+						</p>
+						<div
+							ng-bind-html="(article.content | htmlToPlaintext | limitTo:200)+'...'"></div>
+					</div>
+
+					<hr>
+				</div>
+
+				<ul class="pagination" role="navigation" aria-label="Pagination">
+					<li ng-class="{current: previous}" ng-click="previousPage()">Previous
+						<span class="show-for-sr">page</span>
+					</li>
+					<li ng-class="{current: next}" ng-click="nextPage()">Next <span
+						class="show-for-sr">page</span></li>
+				</ul>
+
+			</article>
+
+		</div>
+
+		<div class="large-4 columns">
+
+			<aside>
+
+				<!-- <div class="row column">
+					<p class="lead">Create Article</p>
+					<p>
+						<img src="http://placehold.it/400x300&text=Buy Me!"
+							alt="advertisement of ShamWow">
+					</p>
+				</div>
+
+				<br> -->
+
+				<div class="row column">
+					<p class="lead">Latest News on Gadgets</p>
+
+
+					<div class="callout primary" ng-repeat="gadget in gadgets">
+						<p><a href="#/articlePage/{{gadget.id}}">{{gadget.heading}}</a></p>
+					</div>
+
+				</div>
+
+			</aside>
+
+		</div>
+	</div>
+</div>

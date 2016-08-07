@@ -30,7 +30,7 @@ public class ArticleDAO {
 	}
 
 	public List<Article> getArticles(int offset, int limit, String tag) {
-		QueryResults<Article> article = dataStore.find(Article.class).filter("tags", tag).order("-modifiedDate")
+		QueryResults<Article> article = dataStore.find(Article.class).filter("tags", tag).order("-publicationDate")
 				.offset(offset).limit(limit);
 		return article.asList();
 	}

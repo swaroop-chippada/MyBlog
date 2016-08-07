@@ -1,0 +1,20 @@
+<div class="row medium-8 large-7 columns"
+	ng-controller="ArticleController">
+	<div class="blog-post">
+		<h3>
+			{{article.heading}} <small>{{article.publicationDate | date:'dd/MM/yy'}}</small>
+		</h3>
+<div class="callout">
+			<ul class="menu simple">
+				<li>Author: {{article.userId}}</li>
+				<!-- 				<li><a href="#">Comments: 3</a></li>
+ -->
+			</ul>
+		</div>
+<div class="text-center">
+		<img class="thumbnail" ng-src="{{article.imageUrl}}"
+			alt="image for article">
+</div>
+		<p ng-bind-html="article.content"></p>
+	</div>
+</div>

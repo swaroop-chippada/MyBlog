@@ -41,6 +41,12 @@ public class HomePageController {
 		mav.addObject("questionForm", new Question());
 		return mav;
 	}
+	
+	@RequestMapping(value = "/angularIndex", method = RequestMethod.GET)
+	public ModelAndView angularIndex() {
+		ModelAndView mav = new ModelAndView("angularIndex");
+		return mav;
+	}
 
 	@RequestMapping(value = "/postQuestion.do", method = RequestMethod.POST)
 	public ModelAndView postQuestion(@ModelAttribute("questionForm") Question question) {
