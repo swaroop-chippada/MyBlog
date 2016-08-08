@@ -6,7 +6,7 @@ app.config(function($routeProvider) {
 		controller : 'HomeController'
 	}).when('/aboutMe', {
 		templateUrl : 'templates/aboutMe.html',
-	}).when('/search/:searchKey', {
+	}).when('/search', {
 		templateUrl : 'templates/searchResults.html',
 		controller : 'SearchController'
 	}).when('/articlePage/:id', {
@@ -27,6 +27,10 @@ app.controller('ArticleController', [ '$scope', '$http', '$route',
 				console.log("error");
 			});
 		} ]);
+
+app.controller('IndexController', [ '$scope', '$http', function($scope, $http) {
+	$scope.searchKey = "";
+} ]);
 
 app.controller('HomeController', [ '$scope', '$http', function($scope, $http) {
 	$scope.articles = [];
@@ -81,26 +85,50 @@ app.controller('HomeController', [ '$scope', '$http', function($scope, $http) {
 	}
 } ]);
 
-app.controller('SearchController', [ '$scope', '$http', '$route',
-		function($scope, $http, $route) {
-			var searchVO = {
-				searchKey : $route.current.params.searchKey,
+app.controller('SearchController', [ '$scope', '$http',
+		function($scope, $http) {
+			$scope.searchVO = {
+				searchKey : $scope.searchKey,
 				offset : 0,
-				size: 5
+				size : 3
 			}
-			var loadSearchPage = function(searchVO) {
+			$scope.loadSearchPage = function(searchVO) {
 				$http({
 					method : 'POST',
-					url : 'ajax/tag',
+					url : 'ajax/search',
 					data : searchVO
 				}).success(function(data) {
-					console.log("success" + data);
 					$scope.articles = data.articles;
+					$scope.next = !data.next;
+					$scope.previous = !data.previous;
 				}).error(function(data) {
 					console.log("error");
 				});
 			}
-			loadSearchPage(searchVO);
+			$scope.loadSearchPage($scope.searchVO);
+
+			$scope.$watch('searchKey', function(newVal, oldVal) {
+				if ($scope.searchKey != '' && $scope.searchKey != undefined) {
+					$scope.searchVO = {
+						searchKey : $scope.searchKey,
+						offset : 0,
+						size : 3
+					}
+					$scope.loadSearchPage($scope.searchVO);
+				}
+			});
+			$scope.nextPage = function() {
+				if ($scope.next) {
+					$scope.searchVO.offset = $scope.searchVO.offset + 1;
+					$scope.loadSearchPage($scope.searchVO);
+				}
+			}
+			$scope.previousPage = function() {
+				if ($scope.previous) {
+					$scope.searchVO.offset = $scope.searchVO.offset - 1;
+					$scope.loadSearchPage($scope.searchVO);
+				}
+			}
 		} ]);
 
 app.filter('htmlToPlaintext', function() {

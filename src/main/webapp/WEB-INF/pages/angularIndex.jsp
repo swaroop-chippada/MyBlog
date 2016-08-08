@@ -23,7 +23,7 @@
 </script>
 
 </head>
-<body ng-app="myApp">
+<body ng-app="myApp" ng-controller="IndexController">
 	<header>
 		<!-- Sub Navigation -->
 		<div class="top-bar">
@@ -34,13 +34,11 @@
 				</ul>
 			</div>
 			<div class="top-bar-right">
-				<form ng-action="#/search/{{searchKey}}">
-					<ul class="menu">
-						<li><input type="search" ng-bind="searchKey"
-							placeholder="Search"></li>
-						<li><button type="button" class="button">Search</button></li>
-					</ul>
-				</form>
+				<ul class="menu">
+					<li><input type="text" ng-model="searchKey"
+						placeholder="Search" /></li>
+					<li><a href="#/search" class="button">Search</a></li>
+				</ul>
 			</div>
 		</div>
 		<!-- /Sub Navigation -->
@@ -53,7 +51,7 @@
 	</header>
 
 	<br>
-	<div ng-view></div>
+	<div ng-view class="view-min-height"></div>
 
 	<footer>
 		<div class="row expanded callout secondary no-margin">

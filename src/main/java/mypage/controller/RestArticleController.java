@@ -38,16 +38,14 @@ public class RestArticleController {
 	}
 
 	@RequestMapping(value = "/ajax/search", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
-	public ModelAndView search(@RequestBody SearchVO searchVO) {
-		ModelAndView mav = new ModelAndView("searchResults");
+	public ArticleVO search(@RequestBody SearchVO searchVO) {
 		int pageNo = StringUtils.isEmpty(searchVO.getOffset()) ? 0 : searchVO.getOffset();
 		int pageSize = (searchVO.getSize() != 0) ? searchVO.getSize() : WebConstants.PAGE_SIZE;
 		ArticleVO vo = new ArticleVO();
-		vo.setArticles(articlePageService.getSearchResults(pageNo * pageSize, WebConstants.PAGE_SIZE,
-				searchVO.getSearchKey()));
+		vo.setArticles(articlePageService.getSearchResults(pageNo * pageSize, pageSize, searchVO.getSearchKey()));
 		long totalResults = articlePageService.getSearchResultsCount(searchVO.getSearchKey());
 		pagination(vo, pageNo, totalResults, pageSize);
-		return mav;
+		return vo;
 	}
 
 	private void pagination(ArticleVO vo, int pageNo, long totalResults, int pageSize) {
