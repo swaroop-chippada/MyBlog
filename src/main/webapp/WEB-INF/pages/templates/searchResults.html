@@ -2,21 +2,11 @@
 	<div class="row column">
 		<h4 style="margin: 0;" class="text-center">Search Results</h4>
 	</div>
-
 	<hr>
-
 	<div class="row">
 		<div class="large-12 columns" style="border-right: 1px solid #E3E5E8;">
-
 			<article>
-
-
 				<div class="row" ng-repeat="article in articles">
-<!-- 					<div class="large-6 columns"> -->
-<!-- 						<p ng-if="{{!article.imageUrl}}"> -->
-<!-- 							<img ng-src="{{article.imageUrl}}" alt="image for article"> -->
-<!-- 						</p> -->
-<!-- 					</div> -->
 					<div class="large-12 columns">
 						<h5>
 							<a href="#/articlePage/{{article.id}}">{{article.heading}}</a>
@@ -29,21 +19,16 @@
 						<div
 							ng-bind-html="(article.content | htmlToPlaintext | limitTo:200)+'...'"></div>
 					</div>
-
 					<hr>
 				</div>
-
-				<ul class="pagination" role="navigation" aria-label="Pagination">
+				<ul class="pagination text-center" role="navigation" aria-label="Pagination">
 					<li ng-class="{current: previous}" ng-click="previousPage()">Previous
 						<span class="show-for-sr">page</span>
 					</li>
 					<li ng-class="{current: next}" ng-click="nextPage()">Next <span
 						class="show-for-sr">page</span></li>
 				</ul>
-
 			</article>
-
 		</div>
-
 	</div>
 </div>
