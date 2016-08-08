@@ -29,7 +29,6 @@ app.controller('ArticleController', [ '$scope', '$http', '$route',
 		} ]);
 
 app.controller('IndexController', [ '$scope', '$http', function($scope, $http) {
-	$scope.searchKey = "";
 } ]);
 
 app.controller('HomeController', [ '$scope', '$http', function($scope, $http) {

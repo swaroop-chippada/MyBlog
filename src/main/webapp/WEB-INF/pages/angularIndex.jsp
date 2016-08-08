@@ -8,7 +8,6 @@
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
 <link rel="stylesheet"
 	href="http://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css">
-
 <link rel="stylesheet" href="<c:url value="angular/css/app.css" />" />
 <script
 	src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular.min.js"></script>
@@ -16,12 +15,9 @@
 	src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular-route.js"></script>
 <script
 	src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular-sanitize.js"></script>
-
 <script type="text/javascript"
 	src="<c:url value="angular/js/main.js" />">
-	
 </script>
-
 </head>
 <body ng-app="myApp" ng-controller="IndexController">
 	<header>
@@ -42,17 +38,13 @@
 			</div>
 		</div>
 		<!-- /Sub Navigation -->
-
 		<div class="title-bar" data-responsive-toggle="main-menu"
 			data-hide-for="medium">
 			<div class="title-bar-title"></div>
 		</div>
-
 	</header>
-
 	<br>
 	<div ng-view class="view-min-height"></div>
-
 	<footer>
 		<div class="row expanded callout secondary no-margin">
 			<div class="large-6 columns">
