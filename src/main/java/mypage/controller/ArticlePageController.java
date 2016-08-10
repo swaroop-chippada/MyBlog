@@ -5,6 +5,8 @@ import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -28,9 +30,9 @@ public class ArticlePageController {
 	public ModelAndView tagSearch(@RequestParam(value = "id", required = true) String tag,
 			@RequestParam(value = "offset", required = false) String offset) {
 		String viewName = "articleChannel";
-//		if ("news".equalsIgnoreCase(tag)) {
-			viewName = "techNews";
-//		}
+		// if ("news".equalsIgnoreCase(tag)) {
+		viewName = "techNews";
+		// }
 
 		ModelAndView mav = new ModelAndView(viewName);
 		int pageNo;
@@ -78,7 +80,10 @@ public class ArticlePageController {
 	@RequestMapping(value = "/createArticle", method = RequestMethod.GET)
 	public ModelAndView createArticle() {
 		ModelAndView mav = new ModelAndView("createArticle");
-		mav.addObject("article", new Article());
+		Article article = new Article();
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		article.setUserId(auth.getName());
+		mav.addObject("article", article);
 		return mav;
 	}
 
@@ -100,7 +105,7 @@ public class ArticlePageController {
 			articlePageService.createArticle(originalArticle);
 			mav.addObject("articleUpdated", true);
 		}
-		
+
 		mav.addObject("article", article);
 		return mav;
 	}
@@ -115,7 +120,7 @@ public class ArticlePageController {
 	}
 
 	private void pagination(ModelAndView mav, int pageNo, long totalResults) {
-		if (!((pageNo+1)*WebConstants.PAGE_SIZE < totalResults)) {
+		if (!((pageNo + 1) * WebConstants.PAGE_SIZE < totalResults)) {
 			mav.addObject("next", true);
 		}
 		if (pageNo == 0) {

@@ -20,8 +20,8 @@
 				<li class="<c:if test="${active eq 'gadgets'}">active</c:if>"><a
 					href="${pageContext.request.contextPath}/tag?id=gadgets">Gadget
 						360</a></li>
-				<li class="<c:if test="${active eq 'aboutme'}">active</c:if>"><a
-					href="${pageContext.request.contextPath}/angularIndex">QuickView (beta)</a></li>
+				<li><a href="${pageContext.request.contextPath}/angularIndex">QuickView
+						(beta)</a></li>
 				<li class="<c:if test="${active eq 'aboutme'}">active</c:if>"><a
 					href="${pageContext.request.contextPath}/about">About Me</a></li>
 			</ul>

@@ -133,3 +133,10 @@ footer {
 		padding-right: 20px;
 	}
 }
+
+.logout {
+	float: right;
+	direction: rtl;
+	padding-top: 10px;
+	padding-right: 27px;
+}

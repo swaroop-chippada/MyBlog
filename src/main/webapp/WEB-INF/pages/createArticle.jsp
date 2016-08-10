@@ -25,6 +25,16 @@
 <body>
 
 	<custom:nav></custom:nav>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-12 logout">
+				<c:url var="logoutUrl" value="/logout" />
+				<form action="${logoutUrl}" method="post">
+					<input type="submit" value="Logout" />
+				</form>
+			</div>
+		</div>
+	</div>
 	<c:if test="${articleCreated or articleUpdated}">
 		<div class="alert alert-block">
 			<button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -65,10 +75,10 @@
 							<div class="form-group">
 								<label for="heading">Author</label>
 								<form:input type="text" path="userId" id="userId"
-									class="form-control" placeholder="Article Author" />
+									class="form-control" placeholder="Article Author" readonly="true"/>
 							</div>
 							<div class="form-group">
-								<form:hidden path="id"/>
+								<form:hidden path="id" />
 								<input type="submit" class="btn btn-success" value="Post" /> <input
 									type="reset" value="Clear" class="btn btn-danger" />
 							</div>
