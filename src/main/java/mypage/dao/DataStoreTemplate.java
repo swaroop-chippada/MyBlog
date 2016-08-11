@@ -20,7 +20,7 @@ public class DataStoreTemplate {
 		if (!StringUtils.isEmpty(System.getenv("MONGODB_URI"))) {
 			host = System.getenv("MONGODB_URI");
 		} else {
-			host = System.getProperty("MONGODB_URL");
+			host = "mongodb://localhost";
 		}
 
 		MongoClient mongoClient = new MongoClient(new MongoClientURI(host));

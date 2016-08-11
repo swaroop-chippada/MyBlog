@@ -7,16 +7,15 @@
 
 	<http use-expressions="true">
 		<intercept-url pattern="/createArticle" access="isAuthenticated()" />
-		<form-login />
-		<logout logout-success-url="/" logout-url="/logout" invalidate-session="true"/>
-		<csrf disabled="true"/>
+		<form-login login-page="/login" default-target-url="/"
+			username-parameter="userName"
+	password-parameter="password"/>
+		<logout logout-success-url="/" logout-url="/logout"
+			invalidate-session="true" />
+		<csrf disabled="true" />
 	</http>
-
+	
 	<authentication-manager>
-		<authentication-provider>
-			<user-service>
-				<user name="swaroop" password="swapadmin" authorities="admin, user" />
-			</user-service>
-		</authentication-provider>
+		<authentication-provider user-service-ref="customUserDetailsService" />
 	</authentication-manager>
 </beans:beans>

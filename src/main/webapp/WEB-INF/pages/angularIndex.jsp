@@ -27,6 +27,7 @@
 				<ul class="menu">
 					<li><a href="#/">Home</a></li>
 					<li><a href="#/aboutMe">About Me</a></li>
+					<li><a href="<c:url value="home" />">Back to Classic View</a></li>
 				</ul>
 			</div>
 			<div class="top-bar-right">

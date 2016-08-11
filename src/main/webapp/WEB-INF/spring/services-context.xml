@@ -9,18 +9,19 @@
         http://www.springframework.org/schema/context 
         http://www.springframework.org/schema/context/spring-context.xsd">
 
-	<context:component-scan base-package="mypage" />
-	<mvc:resources mapping="/resources/**" location="/resources/" />
-	
-	<mvc:resources mapping="/angular/**" location="/WEB-INF/angular/" />
-	<mvc:resources mapping="/templates/**" location="/WEB-INF/pages/templates/" />
+	<bean id="dataStoreTemplate" class="mypage.dao.DataStoreTemplate"></bean>
 
-	<bean
-		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix" value="/WEB-INF/pages/" />
-		<property name="suffix" value=".jsp" />
+	<bean id="articleDAO" class="mypage.dao.ArticleDAO" depends-on="dataStoreTemplate">
+		<property name="dataStoreTemplate" ref="dataStoreTemplate"></property>
 	</bean>
 
-	<mvc:annotation-driven />
+	<bean id="homePageDAO" class="mypage.dao.HomePageDAO" depends-on="dataStoreTemplate">
+		<property name="dataStoreTemplate" ref="dataStoreTemplate"></property>
+	</bean>
+
+	<bean id="customUserDetailsService" class="mypage.service.CustomUserDetailsService"
+		depends-on="dataStoreTemplate">
+		<property name="dataStoreTemplate" ref="dataStoreTemplate"></property>
+	</bean>
 
 </beans>

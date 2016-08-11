@@ -14,9 +14,6 @@ import mypage.domain.Article;
 @Repository
 public class ArticleDAO {
 	
-	@Autowired
-	DataStoreTemplate dataStoreTemplate;
-	
 	Datastore dataStore;
 	
 	public void createArticle(Article article) {
@@ -57,8 +54,8 @@ public class ArticleDAO {
 		return dataStore.find(Article.class, "feedDetails.feedLink", feedLink).countAll();
 	}
 	
+	@Autowired
 	public void setDataStoreTemplate(DataStoreTemplate dataStoreTemplate) {
-		this.dataStoreTemplate = dataStoreTemplate;
 		dataStore = dataStoreTemplate.getDataStore();
 	}
 }

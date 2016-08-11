@@ -3,8 +3,6 @@ package mypage.domain;
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
 
-import mypage.enums.UserType;
-
 @Entity("User")
 public class User {
 
@@ -13,7 +11,8 @@ public class User {
 	private String password;
 	private String firstName;
 	private String lastName;
-	private UserType type;
+	private String email;
+	private Integer role;
 	
 	public String getUserName() {
 		return userName;
@@ -39,10 +38,17 @@ public class User {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	public UserType getType() {
-		return type;
+	public Integer getRole() {
+		return role;
 	}
-	public void setType(UserType type) {
-		this.type = type;
+	
+	public void setRole(Integer role) {
+		this.role = role;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
 	}
 }

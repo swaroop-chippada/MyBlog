@@ -24,8 +24,13 @@
 
 <context-param>
  <param-name>contextConfigLocation</param-name>
- <param-value>/WEB-INF/spring/security-app-context.xml</param-value>
+ <param-value>
+            /WEB-INF/spring/services-context.xml  
+            /WEB-INF/spring/security-app-context.xml
+        </param-value>
  </context-param>
+ 
+ 
  
 <filter>
 <filter-name>springSecurityFilterChain</filter-name>

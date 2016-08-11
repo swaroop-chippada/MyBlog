@@ -12,9 +12,6 @@ import mypage.domain.Question;
 @Repository
 public class HomePageDAO {
 	
-	@Autowired
-	DataStoreTemplate dataStoreTemplate;
-
 	Datastore dataStore;
 
 	public void postQuestion(Question question) {
@@ -26,8 +23,8 @@ public class HomePageDAO {
 		return question.asList();
 	}
 
+	@Autowired
 	public void setDataStoreTemplate(DataStoreTemplate dataStoreTemplate) {
-		this.dataStoreTemplate = dataStoreTemplate;
 		dataStore = dataStoreTemplate.getDataStore();
 	}
 
