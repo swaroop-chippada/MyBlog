@@ -21,6 +21,10 @@ public class ArticlePageService {
 	public List<Article> getRecentArticles(int offset, int limit) {
 		return articleDAO.getRecentArticles(offset, limit);
 	}
+	
+	public long getRecentArticlesCount() {
+		return articleDAO.getRecentArticlesCount();
+	}
 
 	public List<Article> getArticlesForTag(int offset, int limit, String tag) {
 		return articleDAO.getArticles(offset, limit, tag);

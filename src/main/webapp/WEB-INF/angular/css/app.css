@@ -2,6 +2,39 @@
 	margin: 0px;
 }
 
-.view-min-height {
-	min-height: 62.9%;
+.tag-label {
+	display: inline-block;
+	padding: .33333rem .5rem;
+	font-size: 1.2rem;
+	line-height: 1;
+	white-space: nowrap;
+	cursor: default;
+	border-radius: 0;
+	background: #2199e8;
+	color: #fefefe;
+	background: #777;
+	color: #fefefe;
+}
+
+.footer-style {
+	background-color: #ebebeb;
+	border: 1px solid rgba(10, 10, 10, .25);
+	padding: 1rem;
+}
+
+.news-grid {
+	margin: 0 0 1rem;
+	padding: 1rem;
+	border: 1px solid rgba(10, 10, 10, .25);
+	border-radius: 0;
+	position: relative;
+	background-color: #def0fc;
+}
+
+.spacer {
+	padding-bottom: 50px;
+}
+
+.article-grid {
+	padding-bottom:20px
 }

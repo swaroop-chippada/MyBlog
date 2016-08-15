@@ -1,8 +1,14 @@
 package mypage.controller;
 
+import java.io.IOException;
 import java.util.Date;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,29 +34,39 @@ public class HomePageController {
 	@Autowired
 	private CustomUserDetailsService customUserDetailsService;
 
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	/*@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView indexPage() {
 		ModelAndView mav = new ModelAndView("index");
 		// Recent 5
 		mav.addObject("articleList", articlePageService.getRecentArticles(0, 5));
 		return mav;
-	}
+	}*/
 
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public ModelAndView homePage() {
-		return indexPage();
+		return angularIndex();
 	}
 
+	@SuppressWarnings("static-access")
 	@RequestMapping(value = "/about", method = RequestMethod.GET)
-	public ModelAndView aboutMe() {
-		ModelAndView mav = new ModelAndView("aboutMe");
-		mav.addObject("questionForm", new Question());
-		return mav;
+	public ModelAndView aboutMe(HttpServletResponse response) {
+		try {
+			response.sendRedirect("//#//aboutMe");
+			response.setStatus(response.SC_MOVED_PERMANENTLY);
+			return null;
+		} catch (IOException e) {
+			ModelAndView mav = new ModelAndView("aboutMe");
+			mav.addObject("questionForm", new Question());
+			return mav;
+		}
+		
 	}
 
-	@RequestMapping(value = "/angularIndex", method = RequestMethod.GET)
+	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView angularIndex() {
 		ModelAndView mav = new ModelAndView("angularIndex");
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		mav.addObject("isUserLogged", auth.isAuthenticated());
 		return mav;
 	}
 

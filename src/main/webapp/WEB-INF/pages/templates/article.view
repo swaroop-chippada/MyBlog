@@ -1,20 +1,48 @@
-<div class="row medium-8 large-7 columns"
-	ng-controller="ArticleController">
-	<div class="blog-post">
-		<h3>
-			{{article.heading}} <small>{{article.publicationDate | date:'dd/MM/yy'}}</small>
-		</h3>
-<div class="callout">
-			<ul class="menu simple">
-				<li>Author: {{article.userId}}</li>
-				<!-- 				<li><a href="#">Comments: 3</a></li>
- -->
-			</ul>
+<div class="container">
+		<div class="row">
+			<div class="col-sm-12">
+				<header>
+					<h3>{{article.heading}}</h3>
+					<div class="news-grid">
+						By: <b>{{article.userId}}</b> | Published on: <b>{{article.publicationDate | date:'dd/MM/yy'}}</b>
+					</div>
+					<hr>
+				</header>
+				<div class="text-center">
+				<img ng-src="{{article.imageUrl}}" ng-if="article.imageUrl"
+					alt="image for article">
+				</div>
+				<p ng-bind-html="article.content"></p>
+			</div>
 		</div>
-<div class="text-center">
-		<img class="thumbnail" ng-src="{{article.imageUrl}}"
-			alt="image for article">
-</div>
-		<p ng-bind-html="article.content"></p>
+
+
+		<div id="disqus_thread"></div>
+		<script>
+			/**
+			 *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+			 *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+			 */
+			
+			//TO DO
+			/* var disqus_config = function () {
+			    this.page.url = ${article.relativeUrl};  // Replace PAGE_URL with your page's canonical URL variable
+			    this.page.identifier = ${article.id}; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+			}; 
+			
+			(function() { // DON'T EDIT BELOW THIS LINE
+				var d = document, s = d.createElement('script');
+
+				s.src = '//swaroopchippada.disqus.com/embed.js';
+
+				s.setAttribute('data-timestamp', +new Date());
+				(d.head || d.body).appendChild(s);
+			})();
+			*/
+		</script>
+		<noscript>
+			Please enable JavaScript to view the <a
+				href="https://disqus.com/?ref_noscript" rel="nofollow">comments
+				powered by Disqus.</a>
+		</noscript>
 	</div>
-</div>

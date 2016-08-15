@@ -1,0 +1,70 @@
+<div class="container-fluid spacer">
+	<div class="alert alert-block" ng-if="message">
+		<button type="button" class="close" data-dismiss="alert">&times;</button>
+		<h4>{{message}}</h4>
+	</div>
+	<article>
+		<div>
+			<div class="row content spacer">
+				<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+					<header>
+						<h2>Login</h2>
+					</header>
+					<form name='loginForm' method="post" action="{{loginUrl}}">
+						<div class="form-group">
+							<label for="heading">UserName</label> <input type="text"
+								class="form-control" name="userName" id="userName"
+								placeholder="UserName" />
+						</div>
+						<div class="form-group">
+							<label for="heading">Password</label> <input type="password"
+								class="form-control" name="password" id="password"
+								placeholder="password" />
+						</div>
+						<div class="form-group">
+							<input type="submit" class="btn btn-success" value="Login" /> <input
+								type="reset" value="Clear" class="btn btn-danger" />
+						</div>
+					</form>
+				</div>
+				<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+					<header>
+						<h2>New User</h2>
+					</header>
+					<form ng-submit="register()">
+						<div class="form-group">
+							<label for="heading">UserName</label> <input type="text"
+								ng-model="userName" class="form-control" placeholder="UserName" />
+						</div>
+						<div class="form-group">
+							<label for="heading">Password</label> <input type="password"
+								ng-model="password" class="form-control" placeholder="password" />
+						</div>
+						<div class="form-group">
+							<label for="heading">Retype Password</label> <input
+								type="password" class="form-control" ng-model="reTypePassword"
+								placeholder="retype password" />
+						</div>
+						<div class="form-group">
+							<label for="heading">Email</label> <input type="text"
+								ng-model="email" class="form-control" placeholder="Email" />
+						</div>
+						<div class="form-group">
+							<label for="heading">First Name</label> <input type="text"
+								ng-model="firstName" class="form-control"
+								placeholder="First Name" />
+						</div>
+						<div class="form-group">
+							<label for="heading">Last Name</label> <input type="text"
+								ng-model="lastName" class="form-control" placeholder="Last Name" />
+						</div>
+						<div class="form-group">
+							<input type="submit" class="btn btn-success" value="Register" />
+							<input type="reset" value="Clear" class="btn btn-danger" />
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</article>
+</div>

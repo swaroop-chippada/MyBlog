@@ -7,10 +7,10 @@
 
 	<http use-expressions="true">
 		<intercept-url pattern="/createArticle" access="isAuthenticated()" />
-		<form-login login-page="/login" default-target-url="/"
+		<form-login login-page="/login" default-target-url="/#/"
 			username-parameter="userName"
 	password-parameter="password"/>
-		<logout logout-success-url="/" logout-url="/logout"
+		<logout logout-success-url="/#/" logout-url="/logout"
 			invalidate-session="true" />
 		<csrf disabled="true" />
 	</http>

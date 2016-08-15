@@ -1,4 +1,4 @@
-var app = angular.module("myApp", [ 'ngRoute', 'ngSanitize' ]);
+var app = angular.module("myApp", [ 'ngRoute', 'ngSanitize', 'ui.bootstrap' ]);
 
 app.config(function($routeProvider) {
 	$routeProvider.when('/', {
@@ -12,7 +12,14 @@ app.config(function($routeProvider) {
 	}).when('/articlePage/:id', {
 		templateUrl : 'templates/article.view',
 		controller : 'ArticleController'
+	}).when('/login', {
+		templateUrl : 'templates/login.html',
+		controller : 'LoginController'
+	}).when('/allArticles', {
+		templateUrl : 'templates/allArticles.html',
+		controller : 'RecentArticlesController'
 	});
+
 });
 
 app.controller('ArticleController', [ '$scope', '$http', '$route',
@@ -21,14 +28,47 @@ app.controller('ArticleController', [ '$scope', '$http', '$route',
 				method : 'GET',
 				url : 'ajax/article?id=' + $route.current.params.id,
 			}).success(function(data) {
-				console.log("success" + data);
 				$scope.article = data;
+				var d = document, s = d.createElement('script');
+
+				s.src = '//swaroopchippada.disqus.com/embed.js';
+
+				s.setAttribute('data-timestamp', +new Date());
+				(d.head || d.body).appendChild(s);
 			}).error(function(data) {
 				console.log("error");
 			});
 		} ]);
 
-app.controller('IndexController', [ '$scope', '$http', function($scope, $http) {
+app.controller('IndexController', [ '$scope', '$http', '$location',
+		function($scope, $http, $location) {
+			$scope.search = function() {
+				$location.path("/search");
+			}
+		} ]);
+
+app.controller('LoginController', [ '$scope', '$http', function($scope, $http) {
+	$scope.login = function() {
+		var newUser = {
+			userName : $scope.userName,
+			password : $scope.password,
+			firstName : $scope.firstName,
+			lastName : $scope.lastName,
+			email : $scope.email
+		}
+		$http({
+			method : 'POST',
+			url : 'ajax/register',
+			date : newUser
+		}).success(function(data) {
+			if (data) {
+				$scope.message = "Registered Successfully"
+			} else {
+				$scope.message = "UserName Already Exist !"
+			}
+		}).error(function(data) {
+		});
+	}
 } ]);
 
 app.controller('HomeController', [ '$scope', '$http', function($scope, $http) {
@@ -83,6 +123,42 @@ app.controller('HomeController', [ '$scope', '$http', function($scope, $http) {
 		}
 	}
 } ]);
+
+app.controller('RecentArticlesController', [ '$scope', '$http',
+		function($scope, $http) {
+			$scope.articles = [];
+			$scope.searchVO = {
+				offset : 0,
+				size : 3
+			}
+			$scope.loadRecentArticles = function(searchVO) {
+				$http({
+					method : 'POST',
+					url : 'ajax/allArticles',
+					data : searchVO
+				}).success(function(data) {
+					$scope.articles = data.articles;
+					$scope.next = !data.next;
+					$scope.previous = !data.previous;
+				}).error(function(data) {
+					console.log("error" + data);
+				});
+			}
+
+			$scope.loadRecentArticles($scope.searchVO);
+			$scope.nextPage = function() {
+				if ($scope.next) {
+					$scope.searchVO.offset = $scope.searchVO.offset + 1;
+					$scope.loadRecentArticles($scope.searchVO);
+				}
+			}
+			$scope.previousPage = function() {
+				if ($scope.previous) {
+					$scope.searchVO.offset = $scope.searchVO.offset - 1;
+					$scope.loadRecentArticles($scope.searchVO);
+				}
+			}
+		} ]);
 
 app.controller('SearchController', [ '$scope', '$http',
 		function($scope, $http) {

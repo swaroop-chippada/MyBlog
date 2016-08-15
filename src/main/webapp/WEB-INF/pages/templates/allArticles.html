@@ -1,18 +1,18 @@
-<div ng-controller="HomeController" class="container">
+<div ng-controller="RecentArticlesController" class="container">
 	<div class="row">
-		<h4 style="margin: 0;" class="text-center">LATEST TECH NEWS</h4>
+		<h4 style="margin: 0;" class="text-center">All Articles Results</h4>
 	</div>
 	<hr>
-	<div class="container-fluid row">
-		<div class="col-sm-9">
+	<div class="container row">
+		<div class="col-sm-12">
 			<div class="row" ng-repeat="article in articles"
 				style="border: 1px solid #E3E5E8;">
-				<div class="col-sm-3 col-md-3" ng-if="article.imageUrl">
+				<div class="col-sm-2 col-md-2" ng-if="article.imageUrl">
 					<div class="thumbnail">
 						<img ng-src="{{article.imageUrl}}">
 					</div>
 				</div>
-				<div class="col-sm-9 col-md-9" ng-if="article.imageUrl">
+				<div class="col-sm-10 col-md-10" ng-if="article.imageUrl">
 					<div class="caption article-grid">
 						<h3>
 							<a href="#/articlePage/{{article.id}}">{{article.heading}}</a>
@@ -51,26 +51,6 @@
 				</ul>
 			</nav>
 
-		</div>
-		<div class="col-sm-3">
-			<!-- <div class="row column">
-					<p class="lead">Create Article</p>
-					<p>
-						<img src="http://placehold.it/400x300&text=Buy Me!"
-							alt="advertisement of ShamWow">
-					</p>
-				</div>
-				<br> -->
-			<div class="row">
-				<div class="col-sm-12">
-					<h4>Latest News on Gadgets</h4>
-					<div class="news-grid" ng-repeat="gadget in gadgets">
-						<p>
-							<a href="#/articlePage/{{gadget.id}}">{{gadget.heading}}</a>
-						</p>
-					</div>
-				</div>
-			</div>
 		</div>
 	</div>
 </div>

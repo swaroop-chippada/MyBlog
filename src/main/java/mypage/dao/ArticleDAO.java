@@ -10,20 +10,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import mypage.domain.Article;
+import mypage.domain.ArticleStatus;
 
 @Repository
 public class ArticleDAO {
-	
+
 	Datastore dataStore;
-	
+
 	public void createArticle(Article article) {
 		dataStore.save(article);
 	}
 
 	public List<Article> getRecentArticles(int offset, int limit) {
-		QueryResults<Article> article = dataStore.find(Article.class).order("-modifiedDate").offset(offset)
-				.limit(limit);
+		QueryResults<Article> article = dataStore.find(Article.class).filter("status", ArticleStatus.LIVE)
+				.order("-modifiedDate").offset(offset).limit(limit);
 		return article.asList();
+	}
+
+	public long getRecentArticlesCount() {
+		return dataStore.find(Article.class).filter("status", ArticleStatus.LIVE).countAll();
 	}
 
 	public List<Article> getArticles(int offset, int limit, String tag) {
@@ -49,11 +54,11 @@ public class ArticleDAO {
 		Query<Article> article = dataStore.find(Article.class, "id", new ObjectId(id));
 		return article.get();
 	}
-	
+
 	public Long getArticleUsingFeedLink(String feedLink) {
 		return dataStore.find(Article.class, "feedDetails.feedLink", feedLink).countAll();
 	}
-	
+
 	@Autowired
 	public void setDataStoreTemplate(DataStoreTemplate dataStoreTemplate) {
 		dataStore = dataStoreTemplate.getDataStore();

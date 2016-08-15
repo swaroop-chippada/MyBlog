@@ -29,8 +29,8 @@ public class Article {
 	private Date modifiedDate;
 	private Date publicationDate;
 	private String articleUrl;
-	private Long status;
-
+	private Integer status;
+	
 	@Embedded
 	private FeedDetails feedDetails;
 
@@ -132,11 +132,11 @@ public class Article {
 		return this.articleUrl + "/article-" + this.id + ".html";
 	}
 
-	public Long getStatus() {
+	public Integer getStatus() {
 		return status;
 	}
 
-	public void setStatus(Long status) {
+	public void setStatus(Integer status) {
 		this.status = status;
 	}
 

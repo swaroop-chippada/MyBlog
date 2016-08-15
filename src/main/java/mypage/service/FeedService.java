@@ -129,7 +129,7 @@ public class FeedService {
 		}
 		article.setCreatedDate(new Date());
 		article.setModifiedDate(new Date());
-		article.setStatus(1L);
+		article.setStatus(1);
 
 		// Update Feed Details
 		if (!StringUtils.isEmpty(syndEntry.getLink())) {

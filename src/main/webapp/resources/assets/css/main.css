@@ -16,12 +16,25 @@
 	height: 100%;
 }
 
-/* Set black background color, white text and some padding */
-footer {
-	background-color: #555;
-	color: white;
-	width: 100%;
-	height: 100px;
+
+.tag-label {
+	display: inline-block;
+	padding: .33333rem .5rem;
+	font-size: 1.2rem;
+	line-height: 1;
+	white-space: nowrap;
+	cursor: default;
+	border-radius: 0;
+	background: #2199e8;
+	color: #fefefe;
+	background: #777;
+	color: #fefefe;
+}
+
+.footer-style {
+	background-color: #ebebeb;
+	border: 1px solid rgba(10, 10, 10, .25);
+	padding: 1rem;
 }
 
 /* On small screens, set height to 'auto' for sidenav and grid */
