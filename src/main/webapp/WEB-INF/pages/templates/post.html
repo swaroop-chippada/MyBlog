@@ -1,0 +1,38 @@
+<div class="container-fluid spacer" ng-controller="PostController">
+	<div class="alert alert-block" ng-if="message">
+		<button type="button" class="close" data-dismiss="alert">&times;</button>
+		<h4></h4>
+	</div>
+	<article>
+		<div>
+			<div class="row content spacer">
+				<div class="col-xs-12">
+					<header>
+						<h2>Post Question</h2>
+					</header>
+					<form ng-submit="postQuestion()">
+						<div class="form-group">
+							<label for="heading">Name</label> <input type="text"
+								ng-model="name" class="form-control" placeholder="Name" />
+						</div>
+						<div class="form-group">
+							<label for="heading">Email</label> <input type="text"
+								ng-model="email" class="form-control" placeholder="Email" />
+						</div>
+
+						<div class="form-group">
+							<label for="heading">Question</label>
+							<textarea ng-model="question" class="form-control"
+								placeholder="Post your Question here !"></textarea>
+						</div>
+
+						<div class="form-group text-center">
+							<input type="submit" class="btn btn-success" value="Post" /> <!-- <input
+								value="Cancel" class="btn btn-danger" onclick="" /> -->
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</article>
+</div>

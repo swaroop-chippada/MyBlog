@@ -1,12 +1,10 @@
 package mypage.controller;
 
 import java.io.IOException;
-import java.util.Date;
 
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -18,29 +16,13 @@ import org.springframework.web.servlet.ModelAndView;
 import mypage.domain.Question;
 import mypage.domain.User;
 import mypage.domain.UserRole;
-import mypage.service.ArticlePageService;
 import mypage.service.CustomUserDetailsService;
-import mypage.service.HomePageService;
 
 @Controller
 public class HomePageController {
 
 	@Autowired
-	private HomePageService homePageService;
-
-	@Autowired
-	private ArticlePageService articlePageService;
-
-	@Autowired
 	private CustomUserDetailsService customUserDetailsService;
-
-	/*@RequestMapping(value = "/", method = RequestMethod.GET)
-	public ModelAndView indexPage() {
-		ModelAndView mav = new ModelAndView("index");
-		// Recent 5
-		mav.addObject("articleList", articlePageService.getRecentArticles(0, 5));
-		return mav;
-	}*/
 
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public ModelAndView homePage() {
@@ -66,17 +48,7 @@ public class HomePageController {
 	public ModelAndView angularIndex() {
 		ModelAndView mav = new ModelAndView("angularIndex");
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		mav.addObject("isUserLogged", auth.isAuthenticated());
-		return mav;
-	}
-
-	@RequestMapping(value = "/postQuestion.do", method = RequestMethod.POST)
-	public ModelAndView postQuestion(@ModelAttribute("questionForm") Question question) {
-		ModelAndView mav = new ModelAndView("aboutMe");
-		question.setDateCreated(new Date());
-		homePageService.postQuestion(question);
-		mav.addObject("questionForm", new Question());
-		mav.addObject("questionPosted", true);
+		mav.addObject("isUserLogged", !"anonymousUser".equalsIgnoreCase(auth.getName()));
 		return mav;
 	}
 
@@ -99,14 +71,6 @@ public class HomePageController {
 		ModelAndView mav = new ModelAndView("login");
 		mav.addObject("newUser", new User());
 		return mav;
-	}
-
-	public void setHomePageService(HomePageService homePageService) {
-		this.homePageService = homePageService;
-	}
-
-	public void setArticlePageService(ArticlePageService articlePageService) {
-		this.articlePageService = articlePageService;
 	}
 
 	public void setCustomUserDetailsService(CustomUserDetailsService customUserDetailsService) {

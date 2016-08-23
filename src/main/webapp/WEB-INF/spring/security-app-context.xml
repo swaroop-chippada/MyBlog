@@ -8,14 +8,15 @@
 	<http use-expressions="true">
 		<intercept-url pattern="/createArticle" access="isAuthenticated()" />
 		<form-login login-page="/login" default-target-url="/#/"
-			username-parameter="userName"
-	password-parameter="password"/>
+			username-parameter="userName" password-parameter="password" />
 		<logout logout-success-url="/#/" logout-url="/logout"
 			invalidate-session="true" />
 		<csrf disabled="true" />
 	</http>
-	
+
 	<authentication-manager>
-		<authentication-provider user-service-ref="customUserDetailsService" />
+		<authentication-provider user-service-ref="customUserDetailsService">
+			<password-encoder ref="pwdEncoder" />
+		</authentication-provider>
 	</authentication-manager>
 </beans:beans>

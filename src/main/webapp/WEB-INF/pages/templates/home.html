@@ -7,7 +7,8 @@
 		<div class="col-sm-9">
 			<div class="row" ng-repeat="article in articles"
 				style="border: 1px solid #E3E5E8;">
-				<div class="col-sm-3 col-md-3" ng-if="article.imageUrl">
+				<div class="col-sm-3 col-md-3" ng-if="article.imageUrl"
+					style="padding-top: 20px">
 					<div class="thumbnail">
 						<img ng-src="{{article.imageUrl}}">
 					</div>
@@ -53,14 +54,19 @@
 
 		</div>
 		<div class="col-sm-3">
-			<!-- <div class="row column">
-					<p class="lead">Create Article</p>
-					<p>
-						<img src="http://placehold.it/400x300&text=Buy Me!"
-							alt="advertisement of ShamWow">
-					</p>
+			<div class="row">
+				<div class="col-sm-12 text-center">
+					<div class="news-grid">
+						<h4>Need help in solving any problems ?</h4>
+						<button type="button" class="btn btn-default"
+							ng-click="openPostModal()">
+							<h4>Post your Question now</h4>
+						</button>
+					</div>
 				</div>
-				<br> -->
+			</div>
+			<br>
+
 			<div class="row">
 				<div class="col-sm-12">
 					<h4>Latest News on Gadgets</h4>

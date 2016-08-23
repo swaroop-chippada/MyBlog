@@ -41,9 +41,45 @@ app.controller('ArticleController', [ '$scope', '$http', '$route',
 		} ]);
 
 app.controller('IndexController', [ '$scope', '$http', '$location',
-		function($scope, $http, $location) {
+		'$uibModal', function($scope, $http, $location, $uibModal) {
 			$scope.search = function() {
 				$location.path("/search");
+			};
+			$scope.openPostModal = function() {
+				var modalInstance = $uibModal.open({
+					animation : true,
+					ariaLabelledBy : 'modal-title',
+					ariaDescribedBy : 'modal-body',
+					templateUrl : 'templates/post.html',
+					controller : 'PostController',
+					size : 'lg',
+				// resolve: {
+				// items: function () {
+				// return $ctrl.items;
+				// }
+				// }
+				});
+			};
+		} ]);
+
+app.controller('PostController', [ '$scope', '$http',
+		function($scope, $http) {
+			$scope.postQuestion = function() {
+				var question = {
+					name : $scope.userName,
+					email : $scope.email,
+					question : $scope.question
+				}
+				$http({
+					method : 'POST',
+					url : 'ajax/postQuestion',
+					data : question
+				}).success(function(data) {
+					console.log("successfully posted");
+//					$uibModalInstance.dismiss('cancel');
+				}).error(function(data) {
+					// $scope.message = "Registered Successfully"
+				});
 			}
 		} ]);
 
@@ -59,7 +95,7 @@ app.controller('LoginController', [ '$scope', '$http', function($scope, $http) {
 		$http({
 			method : 'POST',
 			url : 'ajax/register',
-			date : newUser
+			data : newUser
 		}).success(function(data) {
 			if (data) {
 				$scope.message = "Registered Successfully"

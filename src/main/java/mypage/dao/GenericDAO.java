@@ -7,22 +7,20 @@ import org.mongodb.morphia.query.QueryResults;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import mypage.domain.Question;
-
 @Repository
-public class HomePageDAO {
+public class GenericDAO {
 	
 	Datastore dataStore;
 
-	public void postQuestion(Question question) {
-		dataStore.save(question);
+	public void postQuestion(Object entity) {
+		dataStore.save(entity);
 	}
 
-	public List<Question> getQuestions() {
-		QueryResults<Question> question = dataStore.find(Question.class);
+	public <T> List<T> getQuestions(Class<T> entityClass) {
+		QueryResults<T> question = dataStore.find(entityClass);
 		return question.asList();
 	}
-
+	
 	@Autowired
 	public void setDataStoreTemplate(DataStoreTemplate dataStoreTemplate) {
 		dataStore = dataStoreTemplate.getDataStore();

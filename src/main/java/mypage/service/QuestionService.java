@@ -5,25 +5,25 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import mypage.dao.HomePageDAO;
+import mypage.dao.GenericDAO;
 import mypage.domain.Question;
 
 @Service
-public class HomePageService {
+public class QuestionService {
 
 	@Autowired
-	private HomePageDAO homePageDAO;
+	private GenericDAO genericDAO;
 
 	public List<Question> getQuestions() {
-		return homePageDAO.getQuestions();
+		return genericDAO.getQuestions(Question.class);
 	}
 
 	public void postQuestion(Question question) {
-		homePageDAO.postQuestion(question);
+		genericDAO.postQuestion(question);
 	}
 
-	public void setHomePageDAO(HomePageDAO homePageDAO) {
-		this.homePageDAO = homePageDAO;
+	public void setHomePageDAO(GenericDAO genericDAO) {
+		this.genericDAO = genericDAO;
 	}
 
 }

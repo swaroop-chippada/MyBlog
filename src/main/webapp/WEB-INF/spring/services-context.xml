@@ -15,13 +15,18 @@
 		<property name="dataStoreTemplate" ref="dataStoreTemplate"></property>
 	</bean>
 
-	<bean id="homePageDAO" class="mypage.dao.HomePageDAO" depends-on="dataStoreTemplate">
+	<bean id="genericDAO" class="mypage.dao.GenericDAO" depends-on="dataStoreTemplate">
 		<property name="dataStoreTemplate" ref="dataStoreTemplate"></property>
 	</bean>
 
 	<bean id="customUserDetailsService" class="mypage.service.CustomUserDetailsService"
 		depends-on="dataStoreTemplate">
 		<property name="dataStoreTemplate" ref="dataStoreTemplate"></property>
+	</bean>
+
+	<bean id="pwdEncoder"
+		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
+		<constructor-arg name="strength" value="10" />
 	</bean>
 
 </beans>

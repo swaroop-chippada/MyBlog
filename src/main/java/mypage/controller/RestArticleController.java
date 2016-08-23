@@ -1,23 +1,17 @@
 package mypage.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
 
 import mypage.domain.Article;
 import mypage.domain.ArticleVO;
 import mypage.domain.SearchVO;
-import mypage.domain.User;
-import mypage.domain.UserRole;
 import mypage.service.ArticlePageService;
-import mypage.service.CustomUserDetailsService;
 import mypage.utils.WebConstants;
 
 @RestController
@@ -25,9 +19,6 @@ public class RestArticleController {
 
 	@Autowired
 	private ArticlePageService articlePageService;
-
-	@Autowired
-	private CustomUserDetailsService customUserDetailsService;
 
 	@RequestMapping(value = "/ajax/tag", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
 	public ArticleVO tagSearch(@RequestBody SearchVO searchVO) {
@@ -77,21 +68,6 @@ public class RestArticleController {
 		if (pageNo == 0) {
 			vo.setPrevious(true);
 		}
-	}
-
-	@RequestMapping(value = "/ajax/register", method = RequestMethod.POST)
-	public boolean saveNewUser(@ModelAttribute("newUser") User user) {
-		if (customUserDetailsService.getUserDetail(user.getUserName()) != null) {
-			return false;
-		} else {
-			user.setRole(UserRole.ENDUSER);
-			customUserDetailsService.saveNewUser(user);
-		}
-		return true;
-	}
-
-	public void setCustomUserDetailsService(CustomUserDetailsService customUserDetailsService) {
-		this.customUserDetailsService = customUserDetailsService;
 	}
 
 	public void setArticlePageService(ArticlePageService articlePageService) {
